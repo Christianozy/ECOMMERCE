@@ -353,32 +353,15 @@
 
             // Artificial delay for matrix aesthetic
             setTimeout(async () => {
-                try {
-                    const result = await API.login(email, pwd);
+                // DEMO BYPASS: Local frontend bypass without server
+                localStorage.setItem('iyk_token', 'demo-bypass-token');
+                localStorage.setItem('iyk_user', JSON.stringify({ id: 'demo-staff', email: email, role: 'staff', name: 'Staff Operative' }));
+                localStorage.setItem('iyk_department', roleStr);
 
-                    if (!result.success) {
-                        btn.disabled = false;
-                        btn.innerHTML = 'Execute Login &rarr;';
-                        errEl.style.display = 'block';
-                        errEl.textContent = result.error || 'Access Denied: Invalid Decryption Key.';
-                        return;
-                    }
-
-                    // Store the chosen department alongside auth data
-                    const u = result.data.user;
-                    localStorage.setItem('iyk_department', roleStr);
-
-                    btn.innerHTML = 'Clearance Granted. Routing...';
-                    setTimeout(() => {
-                        window.location.href = `staff-dashboard.html?role=${encodeURIComponent(roleStr)}`;
-                    }, 500);
-
-                } catch (error) {
-                    btn.disabled = false;
-                    btn.innerHTML = 'Execute Login &rarr;';
-                    errEl.style.display = 'block';
-                    errEl.textContent = 'Network partition error. Retry.';
-                }
+                btn.innerHTML = 'Clearance Granted. Routing...';
+                setTimeout(() => {
+                    window.location.href = `staff-dashboard.html?role=${encodeURIComponent(roleStr)}`;
+                }, 500);
             }, 800);
         }
 
