@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - IYKMAVIAN Pharmaceuticals</title>
+    <meta name="description"
+        content="Learn about IYKMAVIAN Pharmaceuticals - the premier B2B pharmaceutical distribution hub built on trust, technology, and precision.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/app.js" defer></script>
+    <style>
+        .about-hero {
+            min-height: 55vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 5% 40px;
+            position: relative;
+        }
+
+        .about-hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 680px;
+            line-height: 1.8;
+        }
+
+        .about-section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 100px;
+        }
+
+        .about-grid.reverse {
+            direction: rtl;
+        }
+
+        .about-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .about-text h2 {
+            font-size: 2.4rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        .about-visual-box {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            transition: transform 0.4s;
+        }
+
+        .about-visual-box:hover {
+            transform: translateY(-10px);
+        }
+
+        .about-visual-box .icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .about-visual-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: var(--yellow-accent);
+        }
+
+        .about-visual-box p {
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .leader-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--yellow-accent));
+        }
+
+        .leader-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--blue-primary);
+        }
+
+        .leader-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue-primary), var(--yellow-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 20px;
+            font-weight: 800;
+            color: #fff;
+            font-family: var(--font-heading);
+        }
+
+        .leader-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .leader-role {
+            color: var(--yellow-accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .leader-bio {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            padding: 35px 25px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--blue-light);
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .value-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .value-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN" style="max-height: 75px; width: auto; object-fit: contain;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item">Mega-Logistics</a>
+                        <a href="warehousing.html" class="dropdown-item">Regional Hubs</a>
+                        <a href="manufacturers.html" class="dropdown-item">Manufacturers</a>
+                        <a href="b2b-portal.html" class="dropdown-item">Bulk Procurement</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+                <a href="catalogue.html" class="btn-primary">Browse Catalogue 📦</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+
+        <!-- Hero -->
+        <section class="about-hero entrance-animation">
+            <p
+                style="color: var(--blue-light); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 15px;">
+                Who We Are</p>
+            <h1>The Architecture of <span style="color: var(--yellow-accent);">Mega-Wholesale.</span><br>The Future of
+                <span
+                    style="background: linear-gradient(135deg, var(--blue-light), var(--blue-primary));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;">Healthcare.</span>
+            </h1>
+            <p>IYKMAVIAN Mega-Wholesale is the definitive pharmaceutical distribution infrastructure for Nigeria —
+                engineering high-volume supply chains that power national health security and institutional procurement.
+            </p>
+        </section>
+
+        <!-- Mission & Vision -->
+        <section class="about-section">
+            <div class="about-grid entrance-animation">
+                <div class="about-text">
+                    <p
+                        style="color: var(--blue-light); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px;">
+                        Our Mission</p>
+                    <h2>Redefining <span style="color: var(--yellow-accent);">Pharmaceutical Access</span></h2>
+                    <p>We exist to eliminate the barriers between high-quality pharmaceutical products and the
+                        healthcare providers who need them most. From rural clinics to urban hospitals, IYKMAVIAN
+                        ensures that every facility — regardless of size — operates with pharmaceutical-grade
+                        confidence.</p>
+                    <p>Our systems leverage real-time inventory intelligence, AI-assisted order verification, and a
+                        cold-chain certified logistics fleet to guarantee product integrity from manufacturer to
+                        patient.</p>
+                    <a href="catalogue.html" class="btn-yellow" style="margin-top: 20px; display: inline-flex;">Explore
+                        Our Products →</a>
+                </div>
+                <div class="about-visual-box entrance-animation" style="animation-delay: 200ms;">
+                    <span class="icon">🎯</span>
+                    <h3>Zero Compromise</h3>
+                    <p>Every product distributed through IYKMAVIAN undergoes multi-stage authentication — from
+                        blockchain-verified batch tracing to NAFDAC compliance checks — before it ever reaches your
+                        facility.</p>
+                </div>
+            </div>
+
+            <div class="about-grid reverse entrance-animation">
+                <div class="about-visual-box">
+                    <span class="icon">🌍</span>
+                    <h3>Continental Impact</h3>
+                    <p>Operating across Nigeria with expansion pipelines into East and Southern African markets.
+                        IYKMAVIAN's digital-first model allows any certified healthcare provider to access our full
+                        catalogue and order within minutes.</p>
+                </div>
+                <div class="about-text">
+                    <p
+                        style="color: var(--blue-light); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 10px;">
+                        Our Vision</p>
+                    <h2>Africa's <span style="color: var(--yellow-accent);">Health Backbone</span></h2>
+                    <p>We envision a continent where pharmaceutical supply chain failures are a thing of the past.
+                        Through technology, regulatory excellence, and strategic partnerships, IYKMAVIAN is building the
+                        infrastructure for Africa's health security.</p>
+                    <p>By 2028, our goal is to power pharmaceutical procurement for 10,000+ healthcare facilities across
+                        Africa — frictionlessly, securely, and affordably.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section
+            style="padding: 60px 5%; background: rgba(255,255,255,0.02); border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border);">
+            <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+                <h2 class="entrance-animation" style="font-size: 2.4rem; margin-bottom: 10px;">Our Core <span
+                        style="color: var(--blue-light);">Values</span></h2>
+                <p class="entrance-animation" style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">The
+                    principles that guide every decision we make — from procurement to delivery.</p>
+                <div class="values-grid">
+                    <div class="value-card entrance-animation">
+                        <div class="value-icon">🛡️</div>
+                        <div class="value-title">Integrity</div>
+                        <div class="value-desc">We never compromise on authenticity. Every SKU is verified and
+                            traceable.</div>
+                    </div>
+                    <div class="value-card entrance-animation" style="animation-delay:100ms">
+                        <div class="value-icon">⚡</div>
+                        <div class="value-title">Speed</div>
+                        <div class="value-desc">Critical medications reach facilities within hours, not days.</div>
+                    </div>
+                    <div class="value-card entrance-animation" style="animation-delay:200ms">
+                        <div class="value-icon">🔬</div>
+                        <div class="value-title">Science-First</div>
+                        <div class="value-desc">Our quality assurance team validates every product to global
+                            pharmaceutical standards.</div>
+                    </div>
+                    <div class="value-card entrance-animation" style="animation-delay:300ms">
+                        <div class="value-icon">🤝</div>
+                        <div class="value-title">Partnership</div>
+                        <div class="value-desc">We grow alongside our clients, offering flexible terms, training, and
+                            technical support.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section class="about-section">
+            <div style="text-align: center; margin-bottom: 10px;">
+                <h2 class="entrance-animation" style="font-size: 2.4rem;">Our <span
+                        style="color: var(--yellow-accent);">Leadership</span></h2>
+                <p class="entrance-animation" style="color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    Seasoned professionals across pharmaceuticals, technology, and logistics driving IYKMAVIAN forward.
+                </p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card entrance-animation">
+                    <div class="leader-avatar">IK</div>
+                    <div class="leader-name">Ikenna Mavian</div>
+                    <div class="leader-role">Founder & CEO</div>
+                    <div class="leader-bio">20+ years in pharmaceutical distribution across West Africa. Former NAFDAC
+                        consultant and WHO strategic advisor.</div>
+                </div>
+                <div class="leader-card entrance-animation" style="animation-delay:100ms">
+                    <div class="leader-avatar">AO</div>
+                    <div class="leader-name">Adaeze Okonkwo</div>
+                    <div class="leader-role">Chief Pharmacist Officer</div>
+                    <div class="leader-bio">PharmD, MSc Clinical Pharmacology. Leads our QA team and maintains
+                        IYKMAVIAN's gold-standard compliance framework.</div>
+                </div>
+                <div class="leader-card entrance-animation" style="animation-delay:200ms">
+                    <div class="leader-avatar">CM</div>
+                    <div class="leader-name">Chukwuemeka Madu</div>
+                    <div class="leader-role">VP of Technology</div>
+                    <div class="leader-bio">Former Google & Andela engineer. Architect of the IYKMAVIAN digital platform
+                        and real-time inventory intelligence systems.</div>
+                </div>
+                <div class="leader-card entrance-animation" style="animation-delay:300ms">
+                    <div class="leader-avatar">FN</div>
+                    <div class="leader-name">Fatimah Nwosu</div>
+                    <div class="leader-role">Head of Cold Chain Logistics</div>
+                    <div class="leader-bio">MSc Pharmaceutical Sciences. Manages IYKMAVIAN's fleet of 124
+                        thermostabilized logistics units across Nigeria.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="entrance-animation" style="padding: 80px 5%; text-align: center;">
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px;">Ready to Partner with <span
+                    style="color: var(--yellow-accent);">IYKMAVIAN?</span></h2>
+            <p style="color: var(--text-muted); max-width: 550px; margin: 0 auto 35px; line-height: 1.7;">Join hundreds
+                of hospitals, clinics, and pharmacies already transforming their pharmaceutical supply chain.</p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="catalogue.html" class="btn-yellow">Browse Catalogue 📦</a>
+                <a href="contact.html" class="btn-primary">Get in Touch →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="brand-logo" style="margin-bottom:20px; display:inline-block;">
+                    <img src="images/logo.png" alt="IYKMAVIAN" style="height:55px; object-fit:contain;">
+                </a>
+                <p>Nigeria's definitive mega-wholesale pharmaceutical distribution hub. Engineering the future of
+                    healthcare logistics across Africa.</p>
+                <div class="social-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+            </div>
+            <div class="footer-col">
+                <h4>Supply Chain</h4>
+                <ul>
+                    <li><a href="catalogue.html">Wholesale Inventory</a></li>
+                    <li><a href="logistics.html">Mega-Logistics</a></li>
+                    <li><a href="warehousing.html">Regional Hubs</a></li>
+                    <li><a href="manufacturers.html">Manufacturers</a></li>
+                    <li><a href="b2b-portal.html">Bulk Procurement</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact & Legal</h4>
+                <ul>
+                    <li><a href="mailto:support@iykmavian.com">corporate@iykmavian.com</a></li>
+                    <li><a href="compliance.html">Compliance Hub</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Partner with IYK</h4>
+                <p>Stay updated on regional hub launches and assets.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                    <input type="email" placeholder="Corporate Email" required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Mega-Wholesale. All rights reserved. NAFDAC Tier-1 Licensed.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

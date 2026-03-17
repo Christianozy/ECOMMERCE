@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Order Tracking - IYKMAVIAN Logistics</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .tracking-container {
+            max-width: 800px;
+            margin: 120px auto 60px;
+            padding: 0 5%;
+        }
+
+        .tracking-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .order-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        /* Stepper UI */
+        .stepper {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .step {
+            display: flex;
+            gap: 25px;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 14px;
+            top: 30px;
+            bottom: 0px;
+            width: 2px;
+            background: var(--glass-border);
+            z-index: 1;
+        }
+
+        .step.active:not(:last-child)::after {
+            background: var(--blue-primary);
+        }
+
+        .step-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--bg-main);
+            border: 2px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .step.active .step-icon {
+            border-color: var(--blue-primary);
+            background: var(--blue-primary);
+            color: white;
+            box-shadow: 0 0 15px var(--blue-glow);
+        }
+
+        .step.completed .step-icon {
+            border-color: #27c93f;
+            background: #27c93f;
+            color: white;
+        }
+
+        .step-content h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            font-family: var(--font-heading);
+        }
+
+        .step-content p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .step-content .timestamp {
+            font-size: 0.75rem;
+            color: var(--blue-light);
+            display: block;
+            margin-top: 5px;
+            font-weight: 600;
+        }
+
+        .logistics-footer {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(0, 68, 255, 0.05);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        [data-theme="light"] .tracking-card {
+            background: #ffffff;
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="main-header" class="scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN"
+                    style="height: 55px; vertical-align: middle; margin-right: 10px; object-fit: contain;">
+                
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="customer-dashboard.html">Dashboard</a></li>
+                <li><a href="catalogue.html">Marketplace</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="tracking-container">
+
+        <div class="tracking-card entrance-animation">
+            <div class="order-meta">
+                <div>
+                    <h2 style="font-family: var(--font-heading); margin-bottom: 5px;">Order #KRLX-8821</h2>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Client: <strong>Pharmacy Plus LTD</strong>
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <span class="status-badge"
+                        style="background: rgba(0,229,255,0.1); color: #00e5ff; border: 1px solid rgba(0,229,255,0.2);">Estimated
+                        Arrival: Today, 16:45</span>
+                </div>
+            </div>
+
+            <div class="stepper">
+                <div class="step completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-content">
+                        <h4>Order Received</h4>
+                        <p>Your requisition has been logged and assigned to the queue.</p>
+                        <span class="timestamp">Oct 24, 09:12 AM</span>
+                    </div>
+                </div>
+
+                <div class="step completed">
+                    <div class="step-icon">✓</div>
+                    <div class="step-content">
+                        <h4>Prescription Authenticated</h4>
+                        <p>Verified by Pharmacist Jude (Reg #PH-992). AI integrity check passed.</p>
+                        <span class="timestamp">Oct 24, 10:45 AM</span>
+                    </div>
+                </div>
+
+                <div class="step active">
+                    <div class="step-icon">3</div>
+                    <div class="step-content">
+                        <h4>Packaging & Cold Chain Prep</h4>
+                        <p>Items are being insulated and labeled. Batch #8821-X validation in progress.</p>
+                        <span class="timestamp">Oct 24, 12:30 PM (Current)</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">4</div>
+                    <div class="step-content">
+                        <h4>Dispatched via Unit 14</h4>
+                        <p>The delivery vehicle has departed the Lagos Main facility.</p>
+                        <span class="timestamp">Pending Dispatch</span>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">5</div>
+                    <div class="step-content">
+                        <h4>Product Delivered</h4>
+                        <p>Awaiting digital signature at the destination facility.</p>
+                        <span class="timestamp">Pending Delivery</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="logistics-footer">
+                <div style="font-size: 1.5rem;">🚚</div>
+                <div>
+                    <div style="font-weight: 700; font-size: 0.95rem;">Assigned Carrier: IYKMAVIAN Fleet Captain</div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Real-time GPS tracking will be available
+                        once the unit is in transit.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;" class="entrance-animation">
+            <a href="customer-dashboard.html"
+                style="color: var(--blue-primary); text-decoration: none; font-weight: 600; font-size: 0.9rem;">← Back
+                to My Dashboard</a>
+        </div>
+
+    </main>
+
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mega-Logistics & Cold Chain - IYKMAVIAN</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .logistics-hero {
+            padding: 140px 5% 80px;
+            background: linear-gradient(180deg, rgba(0, 68, 255, 0.08) 0%, transparent 100%);
+            text-align: center;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(0, 68, 255, 0.1);
+            border: 1px solid rgba(0, 68, 255, 0.2);
+            border-radius: 30px;
+            color: var(--blue-light);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+
+        .logistics-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+
+        .logistics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .log-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .log-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--blue-primary);
+        }
+
+        .log-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .log-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 16px;
+        }
+
+        .log-card p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .fleet-stats {
+            background: var(--bg-panel);
+            padding: 80px 5%;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .stats-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--blue-light);
+            font-family: var(--font-heading);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-top: 8px;
+        }
+
+        .map-section {
+            padding: 100px 5%;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            margin-top: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-overlay {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo"><img src="images/logo.png" alt="IYKMAVIAN"
+                    style="max-height:75px;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger active">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item active">Mega-Logistics</a>
+                        <a href="warehousing.html" class="dropdown-item">Regional Hubs</a>
+                        <a href="manufacturers.html" class="dropdown-item">Manufacturers</a>
+                        <a href="b2b-portal.html" class="dropdown-item">Bulk Procurement</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Distribution Inquiry</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="logistics-hero">
+            <span class="hero-tag">National Infrastructure</span>
+            <h1>The Pulse of <span class="hero-gradient-word">Medical Distribution</span>.</h1>
+            <p class="section-sub">From primary factory haulage to regional cross-docking, our GDP-certified logistics
+                network
+                ensures that essential medicines reach every corner of Nigeria with zero temperature variance.</p>
+        </section>
+
+        <div class="fleet-stats">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value">120+</div>
+                    <div class="stat-label">Heavy Haulage Trucks</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0.1°C</div>
+                    <div class="stat-label">Temp Variance</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">GPS Tracking</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">36</div>
+                    <div class="stat-label">States Covered</div>
+                </div>
+            </div>
+        </div>
+
+        <section class="logistics-grid">
+            <div class="log-card">
+                <div class="log-icon">🚛</div>
+                <h3>Primary Haulage</h3>
+                <p>High-capacity line-haul distribution connecting pharmaceutical manufacturers and ports to our
+                    strategic regional hubs across the country.</p>
+            </div>
+            <div class="log-card">
+                <div class="log-icon">❄️</div>
+                <h3>Cold Chain Integrity</h3>
+                <p>Advanced reefers equipped with IoT sensors. We maintain ultra-low temperatures for vaccines,
+                    insulins, and biologics throughout the transit cycle.</p>
+            </div>
+            <div class="log-card">
+                <div class="log-icon">📍</div>
+                <h3>Real-Time Visibility</h3>
+                <p>Our Partners Portal provides live fleet tracking, waypoint arrivals, and digital proof of delivery
+                    for institutional transparency.</p>
+            </div>
+        </section>
+
+        <section class="map-section">
+            <h2>Our Distribution <span class="hero-gradient-word">Footprint</span></h2>
+            <p class="section-sub">Strategic transit lines connecting 5 major regional hubs and 28 sub-distribution
+                points.</p>
+            <div class="map-placeholder"
+                style="background: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80') center/cover;">
+                <div class="map-overlay">
+                    <h3>Interactive Distribution Map</h3>
+                    <p>Live tracking available for registered institutional partners.</p>
+                    <a href="b2b-portal.html" class="btn-primary"
+                        style="margin-top: 15px; display: inline-block;">Access Fleet Control</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Mega-Wholesale. NAFDAC Tier-1 Licensed.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

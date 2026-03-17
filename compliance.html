@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliance & Regulatory Hub - IYKMAVIAN</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .compliance-hero {
+            padding: 140px 5% 80px;
+            background: linear-gradient(135deg, rgba(20, 184, 166, 0.08) 0%, transparent 100%);
+            text-align: center;
+        }
+
+        .audit-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .audit-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            display: flex;
+            gap: 25px;
+        }
+
+        .audit-icon {
+            font-size: 2.5rem;
+            color: #14b8a6;
+        }
+
+        .audit-text h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .audit-text p {
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.92rem;
+        }
+
+        .reg-banner {
+            background: var(--bg-panel);
+            padding: 60px 5%;
+            border-top: 1px solid var(--glass-border);
+            text-align: center;
+        }
+
+        .nafdac-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(39, 201, 63, 0.1);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid rgba(39, 201, 63, 0.2);
+            color: #27c93f;
+            font-weight: 700;
+            margin-top: 20px;
+        }
+
+        .recall-section {
+            padding: 90px 5%;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recall-btn {
+            background: rgba(255, 95, 86, 0.1);
+            border: 1px solid rgba(255, 95, 86, 0.2);
+            padding: 15px 30px;
+            border-radius: 12px;
+            color: #ff5f56;
+            font-weight: 800;
+            margin-top: 24px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+        }
+
+        @media(max-width: 800px) {
+            .audit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo"><img src="images/logo.png" alt="IYKMAVIAN"
+                    style="max-height:75px;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger active">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item">Mega-Logistics</a>
+                        <a href="warehousing.html" class="dropdown-item">Regional Hubs</a>
+                        <a href="manufacturers.html" class="dropdown-item">Manufacturers</a>
+                        <a href="b2b-portal.html" class="dropdown-item">Bulk Procurement</a>
+                    </div>
+                </li>
+                <li><a href="compliance.html" class="active">Compliance</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="compliance-hero">
+            <span class="hero-tag"
+                style="background: rgba(20,184,166,0.1); border-color: rgba(20,184,166,0.2); color: #14b8a6;">Quality-First</span>
+            <h1>GWP Compliance & <span class="hero-gradient-word">Regulatory Excellence</span>.</h1>
+            <p class="section-sub">At IYKMAVIAN, we go beyond NAFDAC standards to implement Good Wholesaling Practices
+                (GWP)
+                and Good Distribution Practices (GDP) that rival international pharmaceutical hubs.</p>
+        </section>
+
+        <section class="audit-grid">
+            <div class="audit-card">
+                <div class="audit-icon">🛡️</div>
+                <div class="audit-text">
+                    <h3>Batch-Level Traceability</h3>
+                    <p>Every SKU in our mega-hubs is serialized and tracked from manufacturer first-mile until regional
+                        last-mile delivery. Automated batch recalls ready for action within 120 minutes.</p>
+                </div>
+            </div>
+            <div class="audit-card">
+                <div class="audit-icon">📋</div>
+                <div class="audit-text">
+                    <h3>PCN Certified Distribution</h3>
+                    <p>Fully authorized by the Pharmacists Council of Nigeria (PCN) for large-scale wholesale
+                        operations. Regulated monthly audits and compliance reporting for institutional transparency.
+                    </p>
+                </div>
+            </div>
+            <div class="audit-card">
+                <div class="audit-icon">🔬</div>
+                <div class="audit-text">
+                    <h3>Pharmacovigilance Hub</h3>
+                    <p>Dedicated clinical teams monitor adverse drug reaction (ADR) reports from institutional partners,
+                        linking directly to NAFDAC's national reporting system.</p>
+                </div>
+            </div>
+            <div class="audit-card">
+                <div class="audit-icon">✅</div>
+                <div class="audit-text">
+                    <h3>NAFDAC Tier-1 Vendor</h3>
+                    <p>Approved for the distribution of essential medicines, cold-chain vaccines, and controlled
+                        substances under strict regulatory observation and digital logging.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reg-banner">
+            <h2>Regulatory <span class="hero-gradient-word">Status</span></h2>
+            <div class="nafdac-status">
+                <span>●</span> NAFDAC REG NO: PCN/WH/0024-LM-26 — ACTIVE
+            </div>
+            <p style="margin-top: 15px; font-size: 0.85rem; color: var(--text-muted);">Last Internal GWP Audit: March
+                01, 2026 | Next Audit: June 01, 2026</p>
+        </section>
+
+        <section class="recall-section">
+            <h3>Institutional <span class="hero-gradient-word">Recall System</span></h3>
+            <p class="section-sub">Are you an institutional partner reporting a quality variance? Our rapid recall
+                system initiates within 2 hours of verification.</p>
+            <button class="recall-btn">INITIATE QUALITY VARIANCE REPORT</button>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Mega-Wholesale. GWP & Regulatory Certified.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

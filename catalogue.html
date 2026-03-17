@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmaceutical Catalogue — IYKMAVIAN B2B Wholesale</title>
+    <meta name="title" content="Pharmaceutical Catalogue — IYKMAVIAN B2B Wholesale">
+    <meta name="description"
+        content="Browse IYKMAVIAN's elite pharmaceutical catalogue. High-quality, NAFDAC-certified drugs for hospitals and pharmacies. Bulk ordering and real-time stock updates.">
+    <meta name="keywords"
+        content="drug catalogue nigeria, pharma wholesale, medical supplies lagos, hospital procurement, IYKMAVIAN inventory">
+    <meta name="author" content="IYKMAVIAN Pharmaceuticals">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iykmavian.com/catalogue.html">
+    <meta property="og:title" content="Pharma Catalogue — IYKMAVIAN Elite Distribution">
+    <meta property="og:description"
+        content="Access 75+ NAFDAC-certified pharmaceutical categories for bulk B2B procurement.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=1200&h=630&fit=crop">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/app.js" defer></script>
+    <style>
+        .cat-hero {
+            background: linear-gradient(135deg, rgba(0, 68, 255, 0.12), rgba(255, 189, 46, 0.06));
+            border-radius: 20px;
+            padding: 32px 36px;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .cat-hero h2 {
+            font-size: 2.4rem;
+            letter-spacing: -1px;
+            margin-bottom: 6px;
+        }
+
+        .cat-hero p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .cat-hero-stats {
+            display: flex;
+            gap: 24px;
+            flex-shrink: 0;
+        }
+
+        .ch-stat {
+            text-align: center;
+        }
+
+        .ch-val {
+            font-size: 1.8rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            color: var(--blue-light);
+        }
+
+        .ch-lbl {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cat-controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .cat-search {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 16px;
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .cat-search:focus {
+            border-color: var(--blue-primary);
+        }
+
+        [data-theme="light"] .cat-search {
+            background: #fff;
+            border-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .cat-sort {
+            padding: 10px 16px;
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: var(--text-main);
+            font-size: 0.88rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .product-count {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            align-self: center;
+        }
+
+        @keyframes cardIn {
+            from {
+                opacity: 0;
+                transform: translateY(22px) scale(0.96);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .product-card {
+            animation: cardIn 0.4s ease forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header id="main-header" class="scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN Pharmaceuticals"
+                    style="max-height: 70px; width: auto; display: block; object-fit: contain;">
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger active">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item">Mega-Logistics</a>
+                        <a href="warehousing.html" class="dropdown-item">Regional Hubs</a>
+                        <a href="manufacturers.html" class="dropdown-item">Manufacturers</a>
+                        <a href="b2b-portal.html" class="dropdown-item">Bulk Procurement</a>
+                    </div>
+                </li>
+                <li><a href="catalogue.html" class="active">Wholesale Inventory</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+                <a href="catalogue.html" class="btn-primary">Browse Catalogue 📦</a>
+                <button id="cartToggleBtn" class="cart-btn" aria-label="Open Cart">
+                    🛒
+                    <span class="cart-badge" id="cartBadgeCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Catalogue Section (Exclusive Refinement) -->
+        <section id="catalogue" class="catalogue-section" style="padding-top: 90px; padding-bottom: 80px;">
+
+            <!-- Hero Banner -->
+            <div class="cat-hero">
+                <div>
+                    <h2>Wholesale <span style="color:var(--blue-primary);">Inventory Hub</span></h2>
+                    <p>Direct pipeline to 8,500+ SKU lines across regional hubs. Institutional-grade procurement
+                        with real-time pallet availability and landed-cost transparency.</p>
+                    <a href="b2b-portal.html"
+                        style="display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:10px 20px; background:var(--blue-primary); color:#fff; border-radius:10px; text-decoration:none; font-weight:700; font-size:0.9rem;">🏢
+                        Mega-Requisition Portal →</a>
+                </div>
+                <div class="cat-hero-stats">
+                    <div class="ch-stat">
+                        <div class="ch-val">8.5k+</div>
+                        <div class="ch-lbl">Active SKUs</div>
+                    </div>
+                    <div class="ch-stat">
+                        <div class="ch-val">5</div>
+                        <div class="ch-lbl">Regional Hubs</div>
+                    </div>
+                    <div class="ch-stat">
+                        <div class="ch-val">2hr</div>
+                        <div class="ch-lbl">Dispatch Wave</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="cat-controls">
+                <input class="cat-search" id="catSearch" placeholder="🔍  Search drugs, categories, uses…"
+                    oninput="filterAndSearch()">
+                <select class="cat-sort" id="catSort" onchange="filterAndSearch()">
+                    <option value="default">Sort: Default</option>
+                    <option value="price-asc">Price: Low → High</option>
+                    <option value="price-desc">Price: High → Low</option>
+                    <option value="name-asc">Name: A → Z</option>
+                </select>
+                <span class="product-count" id="productCount"></span>
+            </div>
+
+            <!-- Category Filters -->
+            <div class="category-filters" id="categoryFilters">
+                <button class="filter-pill active" data-filter="all">All Products</button>
+                <button class="filter-pill" data-filter="Antibiotics">Antibiotics</button>
+                <button class="filter-pill" data-filter="Pain Relief">Pain Relief</button>
+                <button class="filter-pill" data-filter="Chronic Care">Chronic Care</button>
+                <button class="filter-pill" data-filter="Antimalarials">Antimalarials 🦟</button>
+                <button class="filter-pill" data-filter="Respiratory">Respiratory 🫁</button>
+                <button class="filter-pill" data-filter="Mental Health">Mental Health 🧠</button>
+                <button class="filter-pill" data-filter="Surgicals">Surgicals</button>
+                <button class="filter-pill" data-filter="OTC">OTC &amp; Vitamins</button>
+            </div>
+
+            <!-- Dynamic Grid -->
+            <div class="products-grid" id="productsGrid"></div>
+        </section>
+    </main>
+
+    <!-- Expanded Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="brand-logo" style="margin-bottom: 20px; display: inline-block;">
+                    <img src="images/logo.png" alt="IYKMAVIAN"
+                        style="height: 55px; vertical-align: middle; margin-right: 10px; object-fit: contain;">
+
+                </a>
+                <p>The definitive B2B pharmaceutical distribution hub. Secure, frictionless, and exclusively premium.
+                </p>
+                <div class="social-links">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Divisions</h4>
+                <ul>
+                    <li><a href="catalogue.html">Wholesale Catalogue</a></li>
+                    <li><a href="staff-portal.html">Staff Intranet</a></li>
+                    <li><a href="superintendent-login.html">Superintendent Vault</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Contact & Legal</h4>
+                <ul>
+                    <li><a href="mailto:support@iykmavian.com">Support: support@iykmavian.com</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Subscribe to Updates</h4>
+                <p>Get notified about new drug arrivals and distribution news.</p>
+                <form class="newsletter-form"
+                    onsubmit="event.preventDefault(); alert('Subscribed to IYKMAVIAN Updates!');">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Pharmaceuticals. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Slide-out Cart Panel -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-header">
+            <h3>Your Requisition</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align:center; color: var(--text-muted); margin-top: 40px;">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotalSum" style="color: var(--yellow-accent);">₦0.00</span>
+            </div>
+            <a href="checkout.html" class="btn-primary"
+                style="width: 100%; justify-content: center; font-size: 1.1rem; padding: 15px; text-decoration: none;">Proceed
+                to Checkout</a>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>

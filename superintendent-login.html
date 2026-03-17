@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Override - IYKMAVIAN</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            background: #050a14;
+            color: var(--text-main);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Deep Grid Background */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: -50%;
+            background-image:
+                linear-gradient(rgba(0, 68, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 68, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+            animation: gridMove 20s linear infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: perspective(500px) rotateX(60deg) translateY(0) translateZ(-200px);
+            }
+
+            100% {
+                transform: perspective(500px) rotateX(60deg) translateY(40px) translateZ(-200px);
+            }
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.15;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .orb-1 {
+            width: 45vw;
+            height: 45vw;
+            top: -15%;
+            left: -10%;
+            background: var(--blue-primary);
+            animation: pulse 8s alternate infinite;
+        }
+
+        .orb-2 {
+            width: 35vw;
+            height: 35vw;
+            bottom: -10%;
+            right: -5%;
+            background: var(--cyan-accent);
+            animation: pulse 12s alternate-reverse infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) translate(0, 0);
+                opacity: 0.1;
+            }
+
+            100% {
+                transform: scale(1.1) translate(40px, -20px);
+                opacity: 0.2;
+            }
+        }
+
+        .top-bar {
+            position: fixed;
+            top: 25px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+            z-index: 50;
+            align-items: center;
+        }
+
+        .top-bar a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .top-bar a:hover {
+            color: #ff5f56;
+            background: rgba(255, 95, 86, 0.1);
+            border-color: rgba(255, 95, 86, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .auth-container {
+            position: relative;
+            width: 100%;
+            max-width: 480px;
+            margin: 20px;
+            z-index: 10;
+            animation: riseUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes riseUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .auth-card {
+            background: linear-gradient(145deg, rgba(8, 14, 25, 0.8), rgba(0, 0, 0, 0.9));
+            border: 1px solid rgba(0, 68, 255, 0.2);
+            border-radius: 24px;
+            padding: 45px 40px;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), inset 0 0 40px rgba(0, 68, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--blue-primary), var(--cyan-accent), transparent);
+            animation: scanline 3s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% {
+                background-position: -400px 0;
+            }
+
+            100% {
+                background-position: 400px 0;
+            }
+        }
+
+        .logo-box {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo-box img {
+            height: 50px;
+            object-fit: contain;
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .auth-header .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 8px;
+            background: rgba(0, 68, 255, 0.1);
+            color: var(--blue-light);
+            border: 1px solid rgba(0, 68, 255, 0.3);
+            margin-bottom: 15px;
+            box-shadow: 0 0 15px rgba(0, 68, 255, 0.2);
+        }
+
+        .auth-header h1 {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            color: var(--text-main);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            margin-bottom: 8px;
+        }
+
+        .auth-header p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .field {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .field label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--blue-light);
+            margin-bottom: 8px;
+        }
+
+        .input-wrap {
+            position: relative;
+        }
+
+        .input-wrap input {
+            width: 100%;
+            padding: 16px 20px;
+            padding-right: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-family: monospace;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .input-wrap input:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 4px rgba(0, 68, 255, 0.15), inset 0 0 10px rgba(0, 68, 255, 0.1);
+            background: rgba(0, 68, 255, 0.02);
+        }
+
+        .input-wrap input.err {
+            border-color: #ff5f56;
+            box-shadow: 0 0 0 4px rgba(255, 95, 86, 0.15);
+            background: rgba(255, 95, 86, 0.02);
+        }
+
+        .input-wrap input::placeholder {
+            color: rgba(255, 255, 255, 0.2);
+            font-family: var(--font-body);
+            letter-spacing: normal;
+        }
+
+        .eye {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            padding: 5px;
+            transition: color 0.3s;
+        }
+
+        .eye:hover {
+            color: var(--blue-light);
+        }
+
+        .err-msg {
+            font-size: 0.75rem;
+            color: #ff5f56;
+            margin-top: 6px;
+            display: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .err-msg.show {
+            display: block;
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
+        }
+
+        .row-utils {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0 30px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .remember input {
+            accent-color: var(--blue-primary);
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        .forgot {
+            font-size: 0.85rem;
+            color: var(--blue-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .forgot:hover {
+            color: var(--cyan-accent);
+            text-shadow: 0 0 10px var(--cyan-accent);
+        }
+
+        .submit {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-glow));
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(0, 68, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 68, 255, 0.6);
+        }
+
+        .submit:hover:not(:disabled)::before {
+            left: 100%;
+        }
+
+        .submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        .alert-bar {
+            display: none;
+            margin-top: 20px;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+            background: rgba(255, 95, 86, 0.1);
+            border: 1px solid rgba(255, 95, 86, 0.3);
+            color: #ff5f56;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(255, 95, 86, 0.1);
+        }
+
+        .alert-bar.show {
+            display: block;
+            animation: flash 0.5s;
+        }
+
+        @keyframes flash {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+                background: rgba(255, 95, 86, 0.2);
+            }
+        }
+
+        .foot {
+            margin-top: 35px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .foot a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .foot a:hover {
+            color: var(--blue-light);
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 0.8s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Terminal text effect */
+        .terminal-text {
+            display: block;
+            font-family: monospace;
+            color: #27c93f;
+            font-size: 0.7rem;
+            text-align: center;
+            opacity: 0;
+            animation: typeFade 2s 1s forwards;
+        }
+
+        @keyframes typeFade {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.3;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <div class="top-bar">
+        <!-- Kept functional theme button behind scenes if needed, but forced dark mode aesthetics via CSS -->
+        <button id="themeBtn" style="display:none;">🌙</button>
+        <a href="index.html" title="Sever Connection">&times;</a>
+    </div>
+
+    <div class="auth-container">
+        <div class="auth-card">
+
+            <div class="logo-box">
+                <a href="index.html"><img src="images/logo.png" alt="IYKMAVIAN"></a>
+            </div>
+
+            <div class="auth-header">
+                <span class="badge">Omni-Clearance Required</span>
+                <h1>Executive Override</h1>
+                <p>Initialize secure uplink to Command Matrix.</p>
+                <span class="terminal-text">> Handshake protocol standing by...</span>
+            </div>
+
+            <form id="loginForm" novalidate>
+                <div class="field">
+                    <label for="uid"><span>Exec ID Code</span> <span
+                            style="color:var(--text-muted); font-size:0.65rem;">MATRIX_ID</span></label>
+                    <div class="input-wrap">
+                        <input type="text" id="uid" placeholder="Format: SUPT-XXX" autocomplete="username"
+                            spellcheck="false">
+                    </div>
+                    <div class="err-msg" id="err-uid">Invalid ID Format.</div>
+                </div>
+
+                <div class="field">
+                    <label for="pwd"><span>Cryptographic Key</span> <span
+                            style="color:var(--text-muted); font-size:0.65rem;">CYPHER</span></label>
+                    <div class="input-wrap">
+                        <input type="password" id="pwd" placeholder="Enter key sequence..."
+                            autocomplete="current-password" spellcheck="false">
+                        <button type="button" class="eye" id="eyeBtn" aria-label="Toggle Cypher Visiblity">👁</button>
+                    </div>
+                    <div class="err-msg" id="err-pwd">Cypher sequence required.</div>
+                </div>
+
+                <div class="row-utils">
+                    <label class="remember"><input type="checkbox" id="remember"> Cache Identity</label>
+                    <a href="#" class="forgot" onclick="forgotPw(event)">Lost Cypher?</a>
+                </div>
+
+                <button type="submit" class="submit" id="submitBtn">
+                    <span id="btnLabel">Establish Uplink</span>
+                </button>
+                <div class="alert-bar" id="alertBar"></div>
+            </form>
+
+            <div class="foot">
+                Global Operations Terminal &middot; Logged & Audited<br>
+                <a href="index.html">Main Grid</a> // <a href="contact.html">Report Breach</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/api.js"></script>
+    <script>
+        const html = document.documentElement; html.setAttribute('data-theme', 'dark'); // Force dark theme for this portal
+
+        // Eye toggle
+        document.getElementById('eyeBtn').addEventListener('click', () => {
+            const p = document.getElementById('pwd');
+            const isHidden = p.type === 'password';
+            p.type = isHidden ? 'text' : 'password';
+            document.getElementById('eyeBtn').textContent = isHidden ? '🙈' : '👁';
+        });
+
+        // Remember me cache
+        const saved = localStorage.getItem('supt_matrix_id');
+        if (saved) { document.getElementById('uid').value = saved; document.getElementById('remember').checked = true; }
+
+        // Core bypass if session active
+        if (API.isLoggedIn()) {
+            const u = API.getUser();
+            if (u && (u.role === 'superintendent' || u.role === 'admin' || u.role === 'superadmin')) {
+                window.location.href = 'superintendent-dashboard.html';
+            }
+        }
+
+        function setLoading(on) {
+            const btn = document.getElementById('submitBtn');
+            const lbl = document.getElementById('btnLabel');
+            btn.disabled = on;
+            lbl.innerHTML = on ? '<span class="spinner"></span> Decrypting...' : 'Establish Uplink';
+        }
+
+        function showAlert(msg) {
+            const bar = document.getElementById('alertBar');
+            bar.textContent = msg; bar.classList.add('show');
+        }
+
+        function hideAlert() { document.getElementById('alertBar').classList.remove('show'); }
+
+        // Action Protocol
+        document.getElementById('loginForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); hideAlert();
+
+            let uid = document.getElementById('uid').value.trim();
+            let pwd = document.getElementById('pwd').value;
+
+            // DEMO BYPASS: Force admin identity if empty
+            if (!uid) uid = "admin";
+            if (!pwd) pwd = "demo";
+
+            setLoading(true);
+
+            // UID logic for demo backend
+            const email = uid.includes('@') ? uid : `${uid.toLowerCase().replace(/[^a-z0-9]/g, '')}@iykmavian.com`;
+
+            // Timeout added solely for visual pacing of the cool animation
+            setTimeout(async () => {
+                const result = await API.login(email, pwd);
+                setLoading(false);
+
+                if (!result.success) {
+                    showAlert(result.error || 'Access Denied: Invalid parameters.');
+                    return;
+                }
+
+                const user = result.data.user;
+
+                // Executive screening
+                if (!['superintendent', 'admin', 'superadmin'].includes(user.role)) {
+                    API.clearAuth();
+                    showAlert('Clearance Denied. Omni-level needed.');
+                    return;
+                }
+
+                if (document.getElementById('remember').checked) {
+                    localStorage.setItem('supt_matrix_id', uid);
+                } else {
+                    localStorage.removeItem('supt_matrix_id');
+                }
+
+                document.getElementById('submitBtn').innerHTML = 'Uplink Secured <span style="color:#27c93f;">●</span>';
+                document.getElementById('submitBtn').style.background = 'rgba(0,0,0,0.5)';
+                document.getElementById('submitBtn').style.border = '1px solid #27c93f';
+                document.getElementById('submitBtn').style.color = '#27c93f';
+
+                setTimeout(() => {
+                    window.location.href = 'superintendent-dashboard.html';
+                }, 800);
+            }, 600);
+        });
+
+        function forgotPw(e) {
+            e.preventDefault();
+            alert('CYPHER LOSS PROTOCOL: Physical presence required at Alpha Core for biometric reset.');
+        }
+
+        ['uid', 'pwd'].forEach(id => {
+            document.getElementById(id).addEventListener('input', function () {
+                this.classList.remove('err'); document.getElementById('err-' + id).classList.remove('show'); hideAlert();
+            });
+        });
+    </script>
+</body>
+
+</html>

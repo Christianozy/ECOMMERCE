@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IYKMAVIAN — Nigeria's Premier Pharmaceutical Distribution Hub</title>
+
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="IYKMAVIAN — Mega-Wholesale Pharma Distribution Hub">
+    <meta name="description"
+        content="Nigeria's premier mega-wholesale pharmaceutical distribution network. High-volume NAFDAC-certified supply chain, regional hubs, and institutional procurement.">
+    <meta name="keywords"
+        content="wholesale pharmaceutical distribution, pharma mega-distributor nigeria, bulk medicine supply, health supply chain africa, nafdac certified drugs, IYKMAVIAN wholesale">
+    <meta name="author" content="IYKMAVIAN Pharmaceuticals">
+    <meta name="theme-color" content="#0044ff">
+    <link rel="canonical" href="https://iykmavian.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://iykmavian.com/">
+    <meta property="og:title" content="IYKMAVIAN — Elite Pharma Distribution Hub">
+    <meta property="og:description"
+        content="Secure, NAFDAC-certified B2B pharmaceutical distribution. The future of healthcare logistics in Nigeria.">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1200&h=630&fit=crop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://iykmavian.com/">
+    <meta property="twitter:title" content="IYKMAVIAN — Elite Pharma Distribution Hub">
+    <meta property="twitter:description"
+        content="Secure, NAFDAC-certified B2B pharmaceutical distribution. The future of healthcare logistics in Nigeria.">
+    <meta property="twitter:image"
+        content="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=1200&h=630&fit=crop">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/app.js" defer></script>
+    <script src="scripts/api.js"></script>
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').catch(e => console.log('SW failed', e));
+            });
+        }
+    </script>
+
+    <style>
+        /* ── PARTICLES ─────────────────────────────── */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── HERO LAYOUT ───────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 110px 5% 80px;
+            overflow: hidden;
+            gap: 52px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 560px;
+            z-index: 2;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 16px;
+            border: 1px solid rgba(0, 68, 255, 0.3);
+            border-radius: 30px;
+            background: rgba(0, 68, 255, 0.08);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--blue-light);
+            margin-bottom: 26px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease 0.1s forwards;
+        }
+
+        .hero-eyebrow .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #27c93f;
+            animation: pulse-dot 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(39, 201, 63, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(39, 201, 63, 0);
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: clamp(2.6rem, 5vw, 4rem);
+            line-height: 1.1;
+            letter-spacing: -2px;
+            margin-bottom: 22px;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.25s forwards;
+        }
+
+        .hero-gradient-word {
+            background: linear-gradient(90deg, #0044ff, #5a8cff, #ffd600);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 36px;
+            max-width: 460px;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.42s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.58s forwards;
+        }
+
+        .hero-trust {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 32px;
+            opacity: 0;
+            animation: fadeInUp 0.7s ease 0.75s forwards;
+        }
+
+        .trust-avatars {
+            display: flex;
+        }
+
+        .trust-avatars span {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.95rem;
+            margin-left: -8px;
+            background: var(--bg-panel);
+        }
+
+        .trust-avatars span:first-child {
+            margin-left: 0;
+        }
+
+        .trust-text {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .trust-text strong {
+            color: var(--text-main);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── HERO SLIDER ───────────────────────────── */
+        .hero-slider-wrap {
+            flex: 1.1;
+            max-width: 600px;
+            z-index: 2;
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 32px 80px rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            animation: sliderIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
+            aspect-ratio: 4/3;
+        }
+
+        @keyframes sliderIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px) scale(0.97);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            background-color: #07122a;
+            /* fallback while image loads */
+            transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: scale(1.04);
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .hero-slide.prev {
+            opacity: 0;
+            transform: scale(0.97);
+        }
+
+        /* Dark gradient overlay so text is readable */
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg,
+                    rgba(4, 10, 30, 0.72) 0%,
+                    rgba(4, 10, 30, 0.42) 50%,
+                    rgba(4, 10, 30, 0.75) 100%);
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 36px 32px;
+            background: linear-gradient(to top, rgba(4, 10, 30, 0.92) 0%, transparent 100%);
+        }
+
+        .slide-tag {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .slide-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.55rem;
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide-desc {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.6;
+            margin-bottom: 18px;
+            max-width: 400px;
+        }
+
+        .slide-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-decoration: none;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(13, 0, 0, 0.12);
+            backdrop-filter: blur(8px);
+            transition: all 0.25s;
+        }
+
+        .slide-btn:hover {
+            background: rgba(255, 255, 255, 0.22);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Stats strip inside slide (top right) */
+        .slide-stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .slide-stat {
+            background: rgba(4, 10, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            padding: 8px 14px;
+            text-align: right;
+        }
+
+        .slide-stat .sv {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .slide-stat .sl {
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Navigation arrows */
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #040000;
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 68, 255, 0.5);
+            border-color: rgba(0, 68, 255, 0.6);
+        }
+
+        .slider-prev {
+            left: 14px;
+        }
+
+        .slider-next {
+            right: 14px;
+        }
+
+        /* Dot navigation */
+        .slider-dots {
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            padding: 0;
+        }
+
+        .slider-dot.active {
+            width: 28px;
+            background: #fff;
+        }
+
+        /* Progress bar */
+        .slider-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: var(--blue-primary);
+            animation: progressBar 5s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes progressBar {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        /* ── MARQUEE ───────────────────────────────── */
+        .partners-marquee {
+            padding: 18px 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 48px;
+            animation: marqueeScroll 28s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes marqueeScroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .marquee-track span {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .marquee-track span.sep {
+            opacity: 0.3;
+        }
+
+        /* ── METRICS ───────────────────────────────── */
+        .metrics-section {
+            padding: 70px 5%;
+        }
+
+        .metrics-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .metric-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.35s var(--bounce-ease);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(0, 68, 255, 0.06), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .metric-card:hover::after {
+            opacity: 1;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(0, 68, 255, 0.3);
+            box-shadow: 0 16px 40px rgba(0, 68, 255, 0.12);
+        }
+
+        .metric-value {
+            font-family: var(--font-heading);
+            font-size: 2.6rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: var(--blue-light);
+            transition: transform 0.3s var(--bounce-ease);
+        }
+
+        .metric-card:hover .metric-value {
+            transform: scale(1.1);
+        }
+
+        .metric-icon {
+            font-size: 2rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        /* ── FEATURES ──────────────────────────────── */
+        .features-section {
+            padding: 90px 5%;
+        }
+
+        .section-eyebrow {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--blue-light);
+            margin-bottom: 14px;
+        }
+
+        .section-h2 {
+            text-align: center;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 52px;
+            line-height: 1.65;
+            font-size: 0.97rem;
+        }
+
+        .features-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 22px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.35s var(--bounce-ease);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--blue-primary);
+            box-shadow: 0 20px 48px rgba(0, 68, 255, 0.14);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--blue-primary), transparent);
+            transform: scaleX(0);
+            transition: transform 0.4s;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .fi-blue {
+            background: rgba(0, 68, 255, 0.12);
+            border: 1px solid rgba(0, 68, 255, 0.2);
+        }
+
+        .fi-yellow {
+            background: rgba(255, 214, 0, 0.1);
+            border: 1px solid rgba(255, 214, 0, 0.2);
+        }
+
+        .fi-green {
+            background: rgba(39, 201, 63, 0.1);
+            border: 1px solid rgba(39, 201, 63, 0.2);
+        }
+
+        .fi-purple {
+            background: rgba(192, 132, 252, 0.1);
+            border: 1px solid rgba(192, 132, 252, 0.2);
+        }
+
+        .fi-red {
+            background: rgba(255, 95, 86, 0.1);
+            border: 1px solid rgba(255, 95, 86, 0.2);
+        }
+
+        .fi-teal {
+            background: rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        .feature-link {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--blue-light);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: gap 0.2s;
+        }
+
+        .feature-link:hover {
+            gap: 10px;
+        }
+
+        /* ── HOW IT WORKS ──────────────────────────── */
+        .how-section {
+            padding: 90px 5%;
+            background: rgba(255, 255, 255, 0.015);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .how-steps {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            position: relative;
+        }
+
+        .how-steps::before {
+            content: '';
+            position: absolute;
+            top: 27px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--yellow-accent));
+            z-index: 0;
+        }
+
+        .how-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+
+        .step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--blue-primary);
+            color: #fff;
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            box-shadow: 0 0 0 6px rgba(0, 68, 255, 0.15);
+            transition: all 0.3s;
+        }
+
+        .how-step:hover .step-num {
+            transform: scale(1.12);
+            box-shadow: 0 0 0 10px rgba(0, 68, 255, 0.12);
+        }
+
+        .step-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .step-desc {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ── CTA ───────────────────────────────────── */
+        .cta-section {
+            padding: 100px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 68, 255, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+            animation: ctaGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes ctaGlow {
+
+            0%,
+            100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1.08);
+            }
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── SCROLL REVEAL ─────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(36px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stagger-1 {
+            transition-delay: 0.06s;
+        }
+
+        .stagger-2 {
+            transition-delay: 0.12s;
+        }
+
+        .stagger-3 {
+            transition-delay: 0.18s;
+        }
+
+        .stagger-4 {
+            transition-delay: 0.24s;
+        }
+
+        .stagger-5 {
+            transition-delay: 0.30s;
+        }
+
+        .stagger-6 {
+            transition-delay: 0.36s;
+        }
+
+        /* ── RESPONSIVE ────────────────────────────── */
+        @media(max-width:960px) {
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-slider-wrap {
+                max-width: 100%;
+                width: 100%;
+                aspect-ratio: 16/9;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .how-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .how-steps::before {
+                display: none;
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .features-grid,
+            .how-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="particles-canvas"></canvas>
+
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="#" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN" style="max-height:75px; width:auto; object-fit:contain;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🚚</span>
+                            <span class="dropdown-item-text"><span
+                                    class="dropdown-item-label">Mega-Logistics</span></span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="warehousing.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🏢</span>
+                            <span class="dropdown-item-text"><span class="dropdown-item-label">Regional
+                                    Hubs</span></span>
+                        </a>
+                        <a href="manufacturers.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">🏭</span>
+                            <span class="dropdown-item-text"><span
+                                    class="dropdown-item-label">Manufacturers</span></span>
+                        </a>
+                        <a href="b2b-portal.html" class="dropdown-item">
+                            <span class="dropdown-item-icon">📦</span>
+                            <span class="dropdown-item-text"><span class="dropdown-item-label">Bulk
+                                    Procurement</span></span>
+                        </a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Distribution Inquiry</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+                <a href="staff-portal.html" class="nav-staff-btn" title="Partners Portal">🏢 Partner Login</a>
+                <a href="superintendent-login.html" class="nav-staff-btn nav-supt-btn" title="Admin Control">🛡️
+                    Admin</a>
+                <a href="catalogue.html" class="btn-primary">Inventory Access &#x1F4E6;</a>
+                <button id="cartToggleBtn" class="cart-btn" aria-label="Open Requisition">
+                    📋<span class="cart-badge" id="cartBadgeCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ═══════════════════════════════════════
+             HERO
+        ════════════════════════════════════════ -->
+        <section class="hero">
+            <!-- Left: Text Content -->
+            <div class="hero-content">
+                <div class="hero-eyebrow"><span class="dot"></span> Mega-Wholesale Network &nbsp;·&nbsp; NAFDAC Tier-1
+                    &nbsp;·&nbsp; Regional Hubs Active</div>
+
+                <h1>The Architecture of <span class="hero-gradient-word">Wholesale Pharma</span> in Africa.</h1>
+
+                <p class="hero-sub">Leading Nigeria's mega-distribution landscape with advanced cold-chain logistics,
+                    high-volume procurement channels, and exclusive manufacturer partnerships for institutional
+                    healthcare.</p>
+
+                <div class="hero-cta">
+                    <a href="catalogue.html" class="btn-yellow" style="padding:14px 28px; font-size:1rem;">Access
+                        Inventory →</a>
+                    <a href="b2b-portal.html" class="btn-primary" style="padding:14px 28px; font-size:1rem;">Partner
+                        Onboarding 🏢</a>
+                </div>
+
+                <div class="hero-trust">
+                    <div class="trust-avatars">
+                        <span>🏢</span><span>🏥</span><span>🏭</span><span>🚢</span>
+                    </div>
+                    <div class="trust-text"><strong>850+</strong> Registered Institutions &amp; Distributors across 36
+                        States 🇳🇬</div>
+                </div>
+            </div>
+
+            <!-- Right: Image Slider -->
+            <div class="hero-slider-wrap" id="heroSlider">
+
+                <!-- Slide 1 -->
+                <div class="hero-slide active"
+                    style="background-image:url('https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=80');">
+                    <div class="slide-stats">
+                        <div class="slide-stat">
+                            <div class="sv">75+</div>
+                            <div class="sl">Drug Lines</div>
+                        </div>
+                        <div class="slide-stat">
+                            <div class="sv">24/7</div>
+                            <div class="sl">Ordering</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-tag" style="background:rgba(0,68,255,0.7);">📦 Distribution</span>
+                        <div class="slide-title">Premium Pharmaceutical<br>Supply Chain</div>
+                        <div class="slide-desc">75+ NAFDAC-certified medicines — antibiotics, chronic care,
+                            antimalarials — delivered with cold-chain precision nationwide.</div>
+                        <a href="catalogue.html" class="slide-btn">Browse Catalogue →</a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="hero-slide"
+                    style="background-image:url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80');">
+                    <div class="slide-stats">
+                        <div class="slide-stat">
+                            <div class="sv">12</div>
+                            <div class="sl">Regional Hubs</div>
+                        </div>
+                        <div class="slide-stat">
+                            <div class="sv">98%</div>
+                            <div class="sl">Fleet Uptime</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-tag" style="background:rgba(39,201,63,0.7);">🚚 Mega-Logistics</span>
+                        <div class="slide-title">Last-Mile Distribution for<br>Regional Sub-Wholesalers</div>
+                        <div class="slide-desc">Our dedicated fleet and regional cross-docking facilities ensure
+                            seamless
+                            supply to sub-distributors and large pharmacy chains nationwide.</div>
+                        <a href="logistics.html" class="slide-btn">Logistics Network →</a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="hero-slide"
+                    style="background-image:url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80');">
+                    <div class="slide-stats">
+                        <div class="slide-stat">
+                            <div class="sv">24</div>
+                            <div class="sl">Global Partners</div>
+                        </div>
+                        <div class="slide-stat">
+                            <div class="sv">TIER 1</div>
+                            <div class="sl">Access</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-tag" style="background:rgba(255,189,46,0.8); color:#000;">🏭 Manufacturer
+                            Portal</span>
+                        <div class="slide-title">Direct-from-Source<br>Wholesale Integration</div>
+                        <div class="slide-desc">We bridge the gap between global pharmaceutical manufacturers and local
+                            mega-distributors with automated EDI, batch tracking, and regulatory compliance.</div>
+                        <a href="manufacturers.html" class="slide-btn">Manufacturer Portal →</a>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="hero-slide"
+                    style="background-image:url('https://images.unsplash.com/photo-1579165466541-74e246904ebb?auto=format&fit=crop&w=900&q=80');">
+                    <div class="slide-stats">
+                        <div class="slide-stat">
+                            <div class="sv">300k+</div>
+                            <div class="sl">Sq Ft Warehousing</div>
+                        </div>
+                        <div class="slide-stat">
+                            <div class="sv">₦5B+</div>
+                            <div class="sl">Credit Facility</div>
+                        </div>
+                    </div>
+                    <div class="slide-content">
+                        <span class="slide-tag" style="background:rgba(192,132,252,0.7);">🏛️ Institutional
+                            Supply</span>
+                        <div class="slide-title">High-Volume Procurement<br>for National Projects</div>
+                        <div class="slide-desc">Supplying state lockdowns, NGOs, and nationwide hospital networks with
+                            uninterrupted inventory, credit lines, and GWP-certified warehousing.</div>
+                        <a href="b2b-portal.html" class="slide-btn">Institutional Access →</a>
+                    </div>
+                </div>
+
+                <!-- Arrows -->
+                <button class="slider-arrow slider-prev" id="sliderPrev" aria-label="Previous slide">&#8592;</button>
+                <button class="slider-arrow slider-next" id="sliderNext" aria-label="Next slide">&#8594;</button>
+
+                <!-- Dots -->
+                <div class="slider-dots" id="sliderDots">
+                    <button class="slider-dot active" data-idx="0" aria-label="Slide 1"></button>
+                    <button class="slider-dot" data-idx="1" aria-label="Slide 2"></button>
+                    <button class="slider-dot" data-idx="2" aria-label="Slide 3"></button>
+                    <button class="slider-dot" data-idx="3" aria-label="Slide 4"></button>
+                </div>
+
+                <!-- Progress bar -->
+                <div class="slider-progress" id="sliderProgress"></div>
+            </div>
+        </section>
+
+        <!-- ═══ MARQUEE ═══ -->
+        <div class="partners-marquee">
+            <div class="marquee-track">
+                <span>Lagos Univ. Teaching Hospital</span><span class="sep">·</span>
+                <span>Hygeia HMO</span><span class="sep">·</span>
+                <span>MSF Nigeria</span><span class="sep">·</span>
+                <span>HealthPlus Pharmacy</span><span class="sep">·</span>
+                <span>Abuja National Hospital</span><span class="sep">·</span>
+                <span>Total Health Trust</span><span class="sep">·</span>
+                <span>NAFDAC Approved</span><span class="sep">·</span>
+                <span>PCN Certified</span><span class="sep">·</span>
+                <span>Rivers State Gen. Hospital</span><span class="sep">·</span>
+                <span>Reliance HMO</span><span class="sep">·</span>
+                <!-- clone -->
+                <span>Lagos Univ. Teaching Hospital</span><span class="sep">·</span>
+                <span>Hygeia HMO</span><span class="sep">·</span>
+                <span>MSF Nigeria</span><span class="sep">·</span>
+                <span>HealthPlus Pharmacy</span><span class="sep">·</span>
+                <span>Abuja National Hospital</span><span class="sep">·</span>
+                <span>Total Health Trust</span><span class="sep">·</span>
+                <span>NAFDAC Approved</span><span class="sep">·</span>
+                <span>PCN Certified</span><span class="sep">·</span>
+                <span>Rivers State Gen. Hospital</span><span class="sep">·</span>
+                <span>Reliance HMO</span><span class="sep">·</span>
+            </div>
+        </div>
+
+        <!-- ═══ METRICS ═══ -->
+        <section class="metrics-section">
+            <div class="metrics-grid">
+                <div class="metric-card reveal stagger-1">
+                    <span class="metric-icon">📦</span>
+                    <div class="metric-value" data-count="2" data-suffix="M+">2M+</div>
+                    <div class="metric-label">Vials Distributed Monthly</div>
+                </div>
+                <div class="metric-card reveal stagger-2">
+                    <span class="metric-icon">✅</span>
+                    <div class="metric-value">99.9%</div>
+                    <div class="metric-label">Fulfillment Accuracy</div>
+                </div>
+                <div class="metric-card reveal stagger-3">
+                    <span class="metric-icon">🌡️</span>
+                    <div class="metric-value">0.1°C</div>
+                    <div class="metric-label">Cold Chain Variance</div>
+                </div>
+                <div class="metric-card reveal stagger-4">
+                    <span class="metric-icon">🩺</span>
+                    <div class="metric-value">24/7</div>
+                    <div class="metric-label">AI Telepharmacy Support</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ FEATURES ═══ -->
+        <section class="features-section">
+            <div class="section-eyebrow reveal">Core Infrastructure</div>
+            <h2 class="section-h2 reveal">Mega-Wholesale Capabilities</h2>
+            <p class="section-sub reveal">Supplying the nation's healthcare backbone with institutional-grade logistics,
+                high-volume procurement, and real-time supply chain transparency.</p>
+            <div class="features-grid">
+                <div class="feature-card reveal stagger-1">
+                    <div class="feature-icon fi-blue">🚚</div>
+                    <h3>Mega-Logistics &amp; Cold Chain</h3>
+                    <p>GDP-certified primary distribution with specialized cold-chain haulage. Real-time temperature
+                        monitoring and GPS tracking for every heavy shipment.</p>
+                    <a href="logistics.html" class="feature-link">View Logistics Network →</a>
+                </div>
+                <div class="feature-card reveal stagger-2">
+                    <div class="feature-icon fi-yellow">📊</div>
+                    <h3>Supply Chain Analytics</h3>
+                    <p>Advanced data visualization for inventory turnover, consumption trends, and predictive
+                        stocking for regional sub-wholesalers and hospital groups.</p>
+                    <a href="analytics.html" class="feature-link">Open Analytics →</a>
+                </div>
+                <div class="feature-card reveal stagger-3">
+                    <div class="feature-icon fi-green">🏭</div>
+                    <h3>Manufacturer Integration</h3>
+                    <p>Direct EDI pipelines with global pharma manufacturers. Automated batch tracking,
+                        NAFDAC e-clearance, and seamless first-mile logistics.</p>
+                    <a href="manufacturers.html" class="feature-link">Partner Portal →</a>
+                </div>
+                <div class="feature-card reveal stagger-4">
+                    <div class="feature-icon fi-purple">🏢</div>
+                    <h3>Regional Distribution Hubs</h3>
+                    <p>Access our network of high-capacity regional hubs across Lagos, Abuja, Kano, and Port Harcourt
+                        for rapid cross-docking and bulk storage.</p>
+                    <a href="warehousing.html" class="feature-link">Hub Locations →</a>
+                </div>
+                <div class="feature-card reveal stagger-5">
+                    <div class="feature-icon fi-red">🏛️</div>
+                    <h3>Mega-Procurement &amp; Tenders</h3>
+                    <p>Bespoke procurement pathways for government parastatals, international NGOs, and
+                        multi-specialty hospital chains with Net-90 credit terms.</p>
+                    <a href="b2b-portal.html" class="feature-link">Wholesale Inquiry →</a>
+                </div>
+                <div class="feature-card reveal stagger-6">
+                    <div class="feature-icon fi-teal">🛡️</div>
+                    <h3>GWP &amp; Compliance Audit</h3>
+                    <p>Rigorous Good Wholesaling Practice (GWP) standards. Digital batch-traceability,
+                        automated recalls, and PCN-approved regulatory reporting.</p>
+                    <a href="compliance.html" class="feature-link">Audit Standards →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ HOW IT WORKS ═══ -->
+        <section class="how-section">
+            <div class="section-eyebrow reveal">Integration Workflow</div>
+            <h2 class="section-h2 reveal">How the Hub Operates</h2>
+            <p class="section-sub reveal">Streamlined wholesale operations for mega-distributors and manufacturers.</p>
+            <div class="how-steps">
+                <div class="how-step reveal stagger-1">
+                    <div class="step-num">1</div>
+                    <div class="step-title">Partner Onboarding</div>
+                    <div class="step-desc">Rigorous credentialing for distributors, manufacturers, and hospital groups
+                    </div>
+                </div>
+                <div class="how-step reveal stagger-2">
+                    <div class="step-num" style="background:var(--yellow-accent); color:#000;">2</div>
+                    <div class="step-title">Bulk Procurement</div>
+                    <div class="step-desc">High-volume requisitions with automated PO generation and contract pricing
+                    </div>
+                </div>
+                <div class="how-step reveal stagger-3">
+                    <div class="step-num">3</div>
+                    <div class="step-title">Logistics Planning</div>
+                    <div class="step-desc">Cold-chain route optimization and multi-modal fleet assignment</div>
+                </div>
+                <div class="how-step reveal stagger-4">
+                    <div class="step-num" style="background:#27c93f;">4</div>
+                    <div class="step-title">Mega-Fulfillment</div>
+                    <div class="step-desc">Regional hub dispatch with end-to-end batch tracking and last-mile proof
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ CTA ═══ -->
+        <section class="cta-section">
+            <h2 class="reveal">Powering Africa's <span class="hero-gradient-word">Medical Logistics</span><br>at Scale.
+            </h2>
+            <p class="reveal">Join 850+ institutional partners leveraging IYKMAVIAN for robust, high-volume
+                pharmaceutical distribution and regional hub access.</p>
+            <div class="cta-btns reveal">
+                <a href="b2b-portal.html" class="btn-primary" style="padding:15px 32px; font-size:1.05rem;">Request
+                    Distribution Access 🏢</a>
+                <a href="catalogue.html" class="btn-yellow" style="padding:15px 32px; font-size:1.05rem;">Explore Full
+                    Inventory &#x1F4E6;</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="brand-logo" style="margin-bottom:20px; display:inline-block;">
+                    <img src="images/logo.png" alt="IYKMAVIAN" style="height:55px; object-fit:contain;">
+                </a>
+                <p>Nigeria's definitive mega-wholesale pharmaceutical distribution hub. Engineering the future of
+                    healthcare logistics across Sub-Saharan Africa.</p>
+                <div class="social-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+            </div>
+            <div class="footer-col">
+                <h4>Supply Chain</h4>
+                <ul>
+                    <li><a href="catalogue.html">Wholesale Inventory</a></li>
+                    <li><a href="logistics.html">Mega-Logistics</a></li>
+                    <li><a href="warehousing.html">Regional Hubs</a></li>
+                    <li><a href="manufacturers.html">Manufacturers</a></li>
+                    <li><a href="b2b-portal.html">Mega-Procurement</a></li>
+                    <li><a href="compliance.html">Compliance Hub</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Distribution Tools</h4>
+                <ul>
+                    <li><a href="analytics.html">Logistics Analytics</a></li>
+                    <li><a href="drug-database.html">Master SKU Database</a></li>
+                    <li><a href="bulk-upload.html">PO Bulk Upload</a></li>
+                    <li><a href="logistics.html#tracking">Fleet Live Track</a></li>
+                    <li><a href="compliance.html#verifier">Wholesale Verifier</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Partner with IYK</h4>
+                <p>Stay updated on new pharmaceutical assets and regional hub launches.</p>
+                <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+                    <input type="email" id="newsletterEmail" placeholder="Corporate Email" required>
+                    <button type="submit" id="newsletterBtn">→</button>
+                </form>
+                <div id="newsletterMsg" style="font-size:0.82rem;margin-top:8px;display:none;"></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Mega-Wholesale. All rights reserved. NAFDAC Tier-1 Licensed &amp; PCN Approved.</p>
+        </div>
+    </footer>
+
+    <!-- Cart -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-header">
+            <h3>Your Requisition</h3>
+            <button class="close-cart" id="closeCartBtn">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            <p style="text-align:center; color:var(--text-muted); margin-top:40px;">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total-row">
+                <span>Total:</span>
+                <span id="cartTotalSum" style="color:var(--yellow-accent);">₦0.00</span>
+            </div>
+            <a href="checkout.html" class="btn-primary"
+                style="width:100%; justify-content:center; font-size:1.1rem; padding:15px; text-decoration:none;">Proceed
+                to Checkout</a>
+        </div>
+    </div>
+
+    <!-- Telepharmacy Widget -->
+    <div class="telepharmacy-widget">
+        <div class="tele-panel" id="telePanel">
+            <div class="tele-header">
+                <span>Dr. AI Consult ⚡</span>
+                <button id="closeTeleBtn"
+                    style="background:none; border:none; color:white; cursor:pointer; font-size:1.2rem;">&times;</button>
+            </div>
+            <div class="tele-body" id="teleBody">
+                <div class="chat-bubble">Hello! I'm the IYKMAVIAN Assistant. How can I help you today?</div>
+            </div>
+            <form class="tele-input-area" id="teleForm">
+                <input type="text" class="tele-input" id="teleInput" placeholder="Ask about medications..."
+                    autocomplete="off" required>
+                <button type="submit" class="tele-send-btn" aria-label="Send">➤</button>
+            </form>
+        </div>
+        <button class="tele-btn" id="teleToggleBtn" aria-label="Open Telepharmacy">🤖</button>
+    </div>
+
+    <!-- ═══ PAGE SCRIPTS ═══ -->
+    <script>
+        // ─── Preload Slide Images ────────────────────────────
+        (function () {
+            const imgs = [
+                'https://images.unsplash.com/photo-1587854692152-cbe660dbde88?auto=format&fit=crop&w=900&q=80',
+                'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80',
+                'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=900&q=80',
+                'https://images.unsplash.com/photo-1579165466541-74e246904ebb?auto=format&fit=crop&w=900&q=80'
+            ];
+            imgs.forEach(src => { const i = new Image(); i.src = src; });
+        })();
+
+        // ─── Particle Canvas ────────────────────────────────
+
+        (function () {
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let W, H, particles = [];
+            function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+            window.addEventListener('resize', resize); resize();
+            const isDark = () => document.documentElement.getAttribute('data-theme') !== 'light';
+            function mkP() { return { x: Math.random() * W, y: Math.random() * H, r: Math.random() * 1.6 + 0.3, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, alpha: Math.random() * .35 + 0.08, col: Math.random() > .5 ? '0,68,255' : '255,214,0' }; }
+            for (let i = 0; i < 70; i++) particles.push(mkP());
+            let mx = -9999, my = -9999;
+            window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+                particles.forEach(p => {
+                    const dx = p.x - mx, dy = p.y - my, d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < 120) { p.vx += dx / d * .35; p.vy += dy / d * .35; }
+                    p.vx *= .98; p.vy *= .98;
+                    p.x += p.vx; p.y += p.vy;
+                    if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+                    if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${p.col},${p.alpha * (isDark() ? 1 : .3)})`; ctx.fill();
+                    particles.forEach(p2 => {
+                        const ddx = p.x - p2.x, ddy = p.y - p2.y, dd = Math.sqrt(ddx * ddx + ddy * ddy);
+                        if (dd < 90) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.strokeStyle = `rgba(${p.col},${(1 - dd / 90) * .1 * (isDark() ? 1 : .4)})`; ctx.lineWidth = .5; ctx.stroke(); }
+                    });
+                });
+                requestAnimationFrame(draw);
+            }
+            draw();
+        })();
+
+        // ─── Hero Image Slider ──────────────────────────────
+        (function () {
+            const slides = document.querySelectorAll('.hero-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            const prev = document.getElementById('sliderPrev');
+            const next = document.getElementById('sliderNext');
+            const prog = document.getElementById('sliderProgress');
+            let current = 0, timer, paused = false;
+            const DURATION = 5000;
+
+            function goTo(n) {
+                slides[current].classList.remove('active');
+                dots[current].classList.remove('active');
+                current = (n + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                dots[current].classList.add('active');
+                // Restart progress bar
+                prog.style.animation = 'none';
+                void prog.offsetWidth;
+                prog.style.animation = `progressBar ${DURATION}ms linear forwards`;
+            }
+
+            function startAuto() {
+                clearInterval(timer);
+                timer = setInterval(() => { if (!paused) goTo(current + 1); }, DURATION);
+            }
+
+            prev.addEventListener('click', () => { goTo(current - 1); startAuto(); });
+            next.addEventListener('click', () => { goTo(current + 1); startAuto(); });
+            dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.idx)); startAuto(); }));
+
+            // Pause on hover
+            document.getElementById('heroSlider').addEventListener('mouseenter', () => paused = true);
+            document.getElementById('heroSlider').addEventListener('mouseleave', () => paused = false);
+
+            // Touch/swipe support
+            let touchStart = 0;
+            document.getElementById('heroSlider').addEventListener('touchstart', e => touchStart = e.touches[0].clientX, { passive: true });
+            document.getElementById('heroSlider').addEventListener('touchend', e => {
+                const diff = touchStart - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); startAuto(); }
+            }, { passive: true });
+
+            // Keyboard support
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight') goTo(current + 1);
+                if (e.key === 'ArrowLeft') goTo(current - 1);
+            });
+
+            startAuto();
+        })();
+
+        // ─── Scroll Reveal ──────────────────────────────────
+        const revEls = document.querySelectorAll('.reveal');
+        const revObs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        revEls.forEach(el => revObs.observe(el));
+
+        // ─── Feature Card 3-D Tilt ──────────────────────────
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const x = ((e.clientX - r.left) / r.width - .5) * 14;
+                const y = ((e.clientY - r.top) / r.height - .5) * -14;
+                card.style.transform = `translateY(-8px) rotateX(${y}deg) rotateY(${x}deg)`;
+            });
+            card.addEventListener('mouseleave', () => card.style.transform = '');
+        });
+    </script>
+</body>
+
+</html>

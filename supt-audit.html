@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Audits - Superintendent Dashboard | IYKMAVIAN</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .dash-layout-advanced {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            position: relative;
+            z-index: 10;
+        }
+
+        .dash-sidebar {
+            background: rgba(14, 25, 45, 0.85);
+            backdrop-filter: blur(20px);
+            border-right: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 20;
+        }
+
+        .dash-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            margin-bottom: 5px;
+            border: 1px solid transparent;
+        }
+
+        .dash-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+
+        .dash-nav-item.active {
+            background: linear-gradient(90deg, rgba(0, 68, 255, 0.15), rgba(0, 68, 255, 0.02));
+            color: var(--blue-light);
+            border-left: 3px solid var(--blue-primary);
+            font-weight: 600;
+        }
+
+        .dash-main-area {
+            padding: 40px 5%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .dash-global-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .header-bg-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background: radial-gradient(ellipse at center, rgba(0, 68, 255, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-box {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.2));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 25px;
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .kpi-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .kpi-val {
+            font-size: 2.5rem;
+            font-weight: 900;
+            font-family: var(--font-heading);
+            line-height: 1;
+        }
+
+        .kpi-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            font-weight: 600;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .filter-row input,
+        .filter-row select {
+            padding: 12px 18px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+
+        .filter-row input:focus,
+        .filter-row select:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 15px rgba(0, 68, 255, 0.2);
+            background: rgba(0, 68, 255, 0.05);
+        }
+
+        .filter-row input {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .log-entry {
+            display: grid;
+            grid-template-columns: auto 160px 1fr auto;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .log-entry:hover {
+            background: linear-gradient(90deg, rgba(0, 68, 255, 0.1), transparent);
+            border-left-color: var(--blue-primary);
+            padding-left: 25px;
+        }
+
+        .log-entry:last-child {
+            border-bottom: none;
+        }
+
+        .log-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px currentColor;
+        }
+
+        .log-icon.success {
+            background: rgba(39, 201, 63, 0.1);
+            border: 1px solid rgba(39, 201, 63, 0.3);
+            color: #27c93f;
+        }
+
+        .log-icon.warning {
+            background: rgba(255, 189, 46, 0.1);
+            border: 1px solid rgba(255, 189, 46, 0.3);
+            color: #ffbd2e;
+        }
+
+        .log-icon.danger {
+            background: rgba(255, 95, 86, 0.1);
+            border: 1px solid rgba(255, 95, 86, 0.3);
+            color: #ff5f56;
+        }
+
+        .log-icon.info {
+            background: rgba(0, 68, 255, 0.1);
+            border: 1px solid rgba(0, 68, 255, 0.3);
+            color: var(--blue-light);
+        }
+
+        .log-time {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-family: monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .log-action {
+            font-weight: 800;
+            font-size: 1.05rem;
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .log-detail {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .log-actor {
+            font-size: 0.9rem;
+            color: var(--blue-light);
+            font-weight: 700;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 4px;
+        }
+
+        .export-btn {
+            padding: 12px 20px;
+            background: rgba(0, 68, 255, 0.1);
+            border: 1px solid rgba(0, 68, 255, 0.3);
+            color: var(--blue-light);
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            background: rgba(0, 68, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 68, 255, 0.3);
+        }
+
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            margin: 30px 0 50px;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .page-btn.active {
+            background: var(--blue-primary);
+            border-color: var(--blue-primary);
+            color: #fff;
+            box-shadow: 0 0 15px rgba(0, 68, 255, 0.4);
+        }
+
+        .page-btn:hover:not(.active) {
+            border-color: var(--blue-light);
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="dash-layout-advanced">
+        <aside class="dash-sidebar">
+            <a href="index.html" class="brand-logo" style="margin-bottom:40px; display:block;">
+                <img src="images/logo.png" alt="IYKMAVIAN" style="height:50px; object-fit:contain;">
+            </a>
+            <div
+                style="font-size:0.75rem; text-transform:uppercase; color:var(--text-muted); margin-bottom:15px; letter-spacing:1px; font-weight:700;">
+                Executive Command</div>
+
+            <nav style="display:flex; flex-direction:column; gap:8px; flex-grow:1;">
+                <a href="superintendent-dashboard.html" class="dash-nav-item"><i>📊</i> Tactical Overview</a>
+                <a href="supt-branches.html" class="dash-nav-item"><i>🏢</i> Regional Nodes</a>
+                <a href="supt-staff.html" class="dash-nav-item"><i>👥</i> Operative Roster</a>
+                <a href="supt-approvals.html" class="dash-nav-item"><i>✅</i> Node Approvals <span class="badge"
+                        style="background:#ff5f56; color:#fff; padding:2px 6px; border-radius:10px; font-size:0.7rem; margin-left:auto;">7</span></a>
+                <a href="supt-audit.html" class="dash-nav-item active"><i>📋</i> Security Audits</a>
+                <a href="supt-settings.html" class="dash-nav-item"><i>⚙️</i> Matrix Settings</a>
+            </nav>
+            <div style="margin-top:auto; padding-top:20px; border-top:1px solid rgba(255,255,255,0.05);">
+                <a href="superintendent-login.html" class="btn-primary"
+                    style="width:100%; justify-content:center; background:rgba(255,95,86,0.1); color:#ff5f56; border:1px solid rgba(255,95,86,0.3); font-size:0.9rem;">Sever
+                    Connection</a>
+            </div>
+        </aside>
+
+        <main class="dash-main-area">
+            <div class="header-bg-glow"></div>
+
+            <header class="dash-global-header">
+                <div style="animation: fadeInDown 0.6s ease;">
+                    <h1 style="font-size:2.2rem; font-family:var(--font-heading); font-weight:800; margin-bottom:5px;">
+                        Global Audit Matrix</h1>
+                    <p style="color:var(--text-muted); font-size:1.05rem;">Immutable ledger of all session events,
+                        actions, and authorizations across the grid.</p>
+                </div>
+                <div class="header-tools" style="animation: fadeInDown 0.6s ease 0.1s both;">
+                    <button class="theme-toggle-btn" id="themeToggle"
+                        style="border:1px solid rgba(255,255,255,0.1);">🌙</button>
+                    <button class="export-btn" onclick="alert('Decrypting and porting global CSV ledger...')"><i>⬇</i>
+                        Output Telemetry (CSV)</button>
+                </div>
+            </header>
+
+            <div class="kpi-strip entrance-animation delay-1">
+                <div class="kpi-box">
+                    <div class="kpi-val" style="color:var(--blue-light); text-shadow:0 0 15px rgba(0,68,255,0.3);">1,248
+                    </div>
+                    <div class="kpi-label">Grid Packets Today</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-val" style="color:#27c93f; text-shadow:0 0 15px rgba(39,201,63,0.3);">1,190</div>
+                    <div class="kpi-label">Authorized Events</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-val" style="color:#ffbd2e; text-shadow:0 0 15px rgba(255,189,46,0.3);">42</div>
+                    <div class="kpi-label">Security Warnings</div>
+                </div>
+                <div class="kpi-box">
+                    <div class="kpi-val" style="color:#ff5f56; text-shadow:0 0 15px rgba(255,95,86,0.3);">16</div>
+                    <div class="kpi-label">Critical Breaches</div>
+                </div>
+            </div>
+
+            <div class="filter-row entrance-animation delay-2">
+                <input type="text" id="logSearch" placeholder="Query action hashes, operatives, or node IDs...">
+                <select id="logCategory">
+                    <option value="">Global Filter</option>
+                    <option value="auth">Node Handshakes</option>
+                    <option value="inventory">Reservoir Updates</option>
+                    <option value="dispatch">Fleet Telemetry</option>
+                    <option value="approval">System Approvals</option>
+                    <option value="system">Matrix Logic</option>
+                    <option value="security">Encryption Breaches</option>
+                </select>
+                <select id="logStatus">
+                    <option value="">All Signatures</option>
+                    <option value="success">Authorized</option>
+                    <option value="warning">Flagged</option>
+                    <option value="danger">Critical</option>
+                    <option value="info">System Info</option>
+                </select>
+                <select id="logBranch">
+                    <option value="">All Regions</option>
+                    <option>Lagos Grid</option>
+                    <option>Abuja Protocol</option>
+                    <option>Port Harcourt Hub</option>
+                    <option>Kano Sector</option>
+                    <option>Enugu Node</option>
+                    <option>Omni-System</option>
+                </select>
+            </div>
+
+            <div class="metric-card entrance-animation delay-3"
+                style="padding:0; overflow:hidden; border-radius:24px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,255,255,0.05); box-shadow:0 10px 30px rgba(0,0,0,0.2);">
+                <div id="logList"></div>
+            </div>
+
+            <div class="pagination entrance-animation delay-4" id="pagination"></div>
+        </main>
+    </div>
+
+    <script>
+        const html = document.documentElement;
+        const saved = localStorage.getItem('iykmavian_theme') || 'dark';
+        html.setAttribute('data-theme', saved);
+        const tb = document.getElementById('themeToggle');
+        tb.textContent = saved === 'light' ? '🌙' : '☀️';
+        tb.addEventListener('click', () => { const t = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; html.setAttribute('data-theme', t); localStorage.setItem('iykmavian_theme', t); tb.textContent = t === 'light' ? '🌙' : '☀️'; });
+
+        const allLogs = [
+            { time: '2026-03-01 20:38:02', icon: '🔓', category: 'auth', type: 'success', action: 'Executive Uplink Granted', detail: 'Token handshake successful · ID: 196.52.41.x', actor: 'SUPT-001', branch: 'Omni-System' },
+            { time: '2026-03-01 20:35:11', icon: '✅', category: 'approval', type: 'success', action: 'Payload Release Authorized', detail: 'Vaccine ColdChain #004 · 4,200 units cleared', actor: 'QA Operative', branch: 'Lagos Grid' },
+            { time: '2026-03-01 20:30:44', icon: '🌡️', category: 'system', type: 'warning', action: 'Thermal Grid Deviation', detail: 'Module CC-07 drifted +0.8°C / 4 min', actor: 'System Logic', branch: 'Abuja Protocol' },
+            { time: '2026-03-01 20:28:15', icon: '📦', category: 'inventory', type: 'success', action: 'Reservoir Influx Verified', detail: 'AMOX-500-CAP integrated · +2,000 units', actor: 'Node KR-091', branch: 'Lagos Grid' },
+            { time: '2026-03-01 20:22:50', icon: '🚚', category: 'dispatch', type: 'info', action: 'Fleet Routing Initiated', detail: 'Ship IYK-PH-011 deployed · Target: Warri Point', actor: 'Dispatcher 11', branch: 'Port Harcourt Hub' },
+            { time: '2026-03-01 20:18:07', icon: '❌', category: 'approval', type: 'danger', action: 'Level-4 Protocol Blocked', detail: 'Illegal query attempt from Sector Terminal 4', actor: 'Unknown IP', branch: 'Kano Sector' },
+            { time: '2026-03-01 20:14:33', icon: '🔐', category: 'security', type: 'warning', action: 'Encryption Ping Failure', detail: 'Internal portal · 2 attempts blocked (41.78.x.x)', actor: 'Firewall', branch: 'Omni-System' },
+            { time: '2026-03-01 20:10:20', icon: '📝', category: 'approval', type: 'success', action: 'Parameter Override Passed', detail: 'Insulin Glargine value > ₦18,000 for Beta Node', actor: 'SUPT-001', branch: 'Omni-System' },
+            { time: '2026-03-01 20:05:44', icon: '👤', category: 'auth', type: 'success', action: 'Operative Matrix Edited', detail: 'KR-156 permissions elevated -> Matrix Lead', actor: 'Admin Core', branch: 'Lagos Grid' },
+            { time: '2026-03-01 19:58:12', icon: '☁️', category: 'system', type: 'info', action: 'Global Node Sync Complete', detail: '6 regions verified — 34ms avg delta latency', actor: 'Cloud Logic', branch: 'Omni-System' },
+            { time: '2026-03-01 19:45:00', icon: '📦', category: 'inventory', type: 'danger', action: 'Reservoir Critical Warning: INS-GLR', detail: 'Physical units: 720 (Grid bottom limit 800)', actor: 'AI Sensor', branch: 'Port Harcourt Hub' },
+            { time: '2026-03-01 19:30:18', icon: '🚚', category: 'dispatch', type: 'success', action: 'Vector Arrival Logged', detail: 'Payload #9801 secured by Enugu Node Checkpoint', actor: 'Fleet KD-22', branch: 'Enugu Node' },
+            { time: '2026-03-01 19:20:05', icon: '🔒', category: 'security', type: 'success', action: 'Omni-Lockdown Initiated', detail: 'Alpha Grid Sec-Protocol triggered by Command', actor: 'SUPT-001', branch: 'Omni-System' },
+            { time: '2026-03-01 19:10:44', icon: '💱', category: 'approval', type: 'info', action: 'Bulk Package Queued', detail: 'Order #9822 · ₦12.4M — Awaiting Exec Decryption', actor: 'Procurement AI', branch: 'Lagos Grid' },
+        ];
+
+        const PAGE_SIZE = 8;
+        let page = 1;
+
+        function getFiltered() {
+            const search = document.getElementById('logSearch').value.toLowerCase();
+            const cat = document.getElementById('logCategory').value;
+            const status = document.getElementById('logStatus').value;
+            const branch = document.getElementById('logBranch').value;
+            return allLogs.filter(l =>
+                (!search || l.action.toLowerCase().includes(search) || l.actor.toLowerCase().includes(search) || l.detail.toLowerCase().includes(search)) &&
+                (!cat || l.category === cat) &&
+                (!status || l.type === status) &&
+                (!branch || l.branch === branch)
+            );
+        }
+
+        function render() {
+            const filtered = getFiltered();
+            const start = (page - 1) * PAGE_SIZE;
+            const paged = filtered.slice(start, start + PAGE_SIZE);
+
+            const list = document.getElementById('logList');
+            list.innerHTML = paged.length ? paged.map(l => `
+            <div class="log-entry">
+                <div class="log-icon ${l.type}">${l.icon}</div>
+                <div class="log-time" style="font-size:0.9rem;">${l.time.split(' ')[0]}<br><span style="color:var(--text-main); font-weight:700;">${l.time.split(' ')[1]}</span></div>
+                <div style="flex:1; min-width:0;">
+                    <div class="log-action">${l.action}</div>
+                    <div class="log-detail"><span style="display:inline-block; width:6px; height:6px; background:currentColor; border-radius:50%;"></span> ${l.detail} <span style="font-weight:700; color:var(--text-main); margin-left:10px;">[ ${l.branch} ]</span></div>
+                </div>
+                <div class="log-actor">
+                    <span class="status-badge ${l.type}" style="padding:4px 10px; background:transparent; border:1px solid currentColor;">${l.type.toUpperCase()}</span>
+                    <span>👤 ${l.actor}</span>
+                </div>
+            </div>`).join('') : '<div style="padding:50px; text-align:center; color:var(--text-muted); font-size:1.1rem;">No data fragments match current filters.</div>';
+
+            const totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+            const pag = document.getElementById('pagination');
+            pag.innerHTML = '';
+            for (let i = 1; i <= totalPages; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'page-btn' + (i === page ? ' active' : '');
+                btn.textContent = i;
+                btn.onclick = () => { page = i; render(); };
+                pag.appendChild(btn);
+            }
+        }
+
+        render();
+        ['logSearch', 'logCategory', 'logStatus', 'logBranch'].forEach(id => {
+            document.getElementById(id).addEventListener('input', () => { page = 1; render(); });
+            document.getElementById(id).addEventListener('change', () => { page = 1; render(); });
+        });
+    </script>
+</body>
+
+</html>

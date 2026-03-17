@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - IYKMAVIAN Pharmaceuticals</title>
+    <meta name="description"
+        content="Get in touch with IYKMAVIAN Pharmaceuticals. Contact our team for bulk orders, partnerships, support and enquiries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <script src="scripts/app.js" defer></script>
+    <style>
+        .contact-hero {
+            min-height: 40vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 5% 40px;
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 5% 100px;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .contact-info-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px 30px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .contact-info-card:hover {
+            transform: translateX(8px);
+            border-color: var(--blue-primary);
+        }
+
+        .contact-info-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: rgba(0, 68, 255, 0.12);
+            border: 1px solid rgba(0, 68, 255, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info-text h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .contact-info-text p {
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .contact-info-text a {
+            color: var(--blue-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info-text a:hover {
+            color: var(--yellow-accent);
+        }
+
+        /* Contact Form */
+        .contact-form-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 45px 40px;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .contact-form-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-form-card p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 3px rgba(0, 68, 255, 0.15);
+        }
+
+        .form-group select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #0e1929;
+            color: var(--text-main);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 130px;
+        }
+
+        [data-theme="light"] .form-group input,
+        [data-theme="light"] .form-group select,
+        [data-theme="light"] .form-group textarea {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .form-group select option {
+            background: #fff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            font-size: 1.05rem;
+            justify-content: center;
+            display: flex;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #27c93f, #1da832);
+            color: #fff;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 30px rgba(39, 201, 63, 0.4);
+            z-index: 9999;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Error state */
+        .form-group input.error,
+        .form-group select.error,
+        .form-group textarea.error {
+            border-color: #ff5f56;
+            box-shadow: 0 0 0 3px rgba(255, 95, 86, 0.15);
+        }
+
+        .error-msg {
+            color: #ff5f56;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .form-group.has-error .error-msg {
+            display: block;
+        }
+
+        .map-placeholder {
+            margin-top: 40px;
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            gap: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="contactToast">✅ Message sent! We'll respond within 24 hours.</div>
+
+    <!-- Header -->
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN" style="max-height: 75px; width: auto; object-fit: contain;">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+                <li><a href="staff-portal.html">Staff</a></li>
+                <li><a href="superintendent-login.html">Superintendent</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+                <a href="catalogue.html" class="btn-primary">Browse Catalogue 📦</a>
+            </div>
+        </div>
+    </header>
+
+    <main style="padding-top: 100px;">
+
+        <!-- Hero -->
+        <div class="contact-hero entrance-animation">
+            <p
+                style="color: var(--blue-light); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 12px;">
+                Get in Touch</p>
+            <h1>We're Here to <span style="color: var(--yellow-accent);">Help.</span></h1>
+            <p>Whether you're a clinic, hospital, or pharmacy looking to partner with us — our team is ready to respond
+                within 24 hours.</p>
+        </div>
+
+        <!-- Contact Layout -->
+        <div class="contact-layout">
+
+            <!-- Left: Info Cards -->
+            <div class="contact-info entrance-animation">
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">📧</div>
+                    <div class="contact-info-text">
+                        <h4>Email Support</h4>
+                        <p><a href="mailto:support@iykmavian.com">support@iykmavian.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">🏢</div>
+                    <div class="contact-info-text">
+                        <h4>Bulk Orders & B2B</h4>
+                        <p><a href="mailto:orders@iykmavian.com">orders@iykmavian.com</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">📞</div>
+                    <div class="contact-info-text">
+                        <h4>Phone (Business Hours)</h4>
+                        <p>+234 800 IYKMAVIAN</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">📍</div>
+                    <div class="contact-info-text">
+                        <h4>Head Office</h4>
+                        <p>14 Pharmaceutical Avenue,<br>Victoria Island, Lagos, Nigeria.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="contact-info-icon">⏰</div>
+                    <div class="contact-info-text">
+                        <h4>Operating Hours</h4>
+                        <p>Mon – Fri: 8:00 AM – 6:00 PM WAT<br>Sat: 9:00 AM – 2:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="map-placeholder">
+                    <span style="font-size: 2.5rem;">🗺️</span>
+                    <p style="font-size: 0.9rem;">Victoria Island, Lagos · Nigeria</p>
+                </div>
+
+            </div>
+
+            <!-- Right: Contact Form -->
+            <div class="contact-form-card entrance-animation" style="animation-delay: 200ms;">
+                <h2>Send Us a <span style="color: var(--yellow-accent);">Message</span></h2>
+                <p>Fill in the form and a member of our team will get back to you promptly.</p>
+
+                <form id="contactForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group" id="fg-name">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" placeholder="e.g. Dr. Adaeze Obi" required>
+                            <span class="error-msg">Please enter your full name.</span>
+                        </div>
+                        <div class="form-group" id="fg-org">
+                            <label for="contact-org">Organisation *</label>
+                            <input type="text" id="contact-org" placeholder="e.g. General Hospital Lagos" required>
+                            <span class="error-msg">Please enter your organisation.</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group" id="fg-email">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" placeholder="you@hospital.com" required>
+                            <span class="error-msg">Please enter a valid email address.</span>
+                        </div>
+                        <div class="form-group" id="fg-phone">
+                            <label for="contact-phone">Phone Number</label>
+                            <input type="tel" id="contact-phone" placeholder="+234 8XX XXX XXXX">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="fg-subject">
+                        <label for="contact-subject">Enquiry Type *</label>
+                        <select id="contact-subject" required>
+                            <option value="" disabled selected>Select the nature of your enquiry…</option>
+                            <option value="bulk-order">Bulk Order / Procurement</option>
+                            <option value="partnership">Strategic Partnership</option>
+                            <option value="cold-chain">Cold Chain Logistics</option>
+                            <option value="support">Technical / Order Support</option>
+                            <option value="compliance">Regulatory & Compliance</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-msg">Please select an enquiry type.</span>
+                    </div>
+
+                    <div class="form-group" id="fg-message">
+                        <label for="contact-message">Message *</label>
+                        <textarea id="contact-message"
+                            placeholder="Describe your needs in detail — product categories, quantities, timelines, or any specific requirements…"
+                            required></textarea>
+                        <span class="error-msg">Please enter your message (min 20 characters).</span>
+                    </div>
+
+                    <div class="form-group"
+                        style="flex-direction: row; align-items: center; gap: 12px; margin-bottom: 25px;">
+                        <input type="checkbox" id="contact-consent"
+                            style="width:18px; height:18px; accent-color: var(--blue-primary); cursor: pointer;"
+                            required>
+                        <label for="contact-consent"
+                            style="text-transform: none; letter-spacing: 0; font-size: 0.9rem; cursor: pointer;">I agree
+                            to IYKMAVIAN's <a href="#" style="color: var(--blue-light);">Privacy Policy</a> and consent
+                            to being contacted.</label>
+                    </div>
+
+                    <button type="submit" class="btn-primary submit-btn" id="contactSubmitBtn">
+                        <span id="submitBtnText">Send Message ✉️</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ Strip -->
+        <section
+            style="padding: 60px 5%; background: rgba(255,255,255,0.02); border-top: 1px solid var(--glass-border);">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <h2 class="entrance-animation" style="font-size: 2rem; margin-bottom: 40px;">Quick <span
+                        style="color: var(--blue-light);">FAQs</span></h2>
+                <div id="faqList" style="text-align: left; display: flex; flex-direction: column; gap: 15px;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col brand-col">
+                <a href="index.html" class="brand-logo" style="margin-bottom: 20px; display: inline-block;">
+                    <img src="images/logo.png" alt="IYKMAVIAN"
+                        style="height: 55px; vertical-align: middle; margin-right: 10px; object-fit: contain;">
+                    
+                </a>
+                <p>The definitive B2B pharmaceutical distribution hub.</p>
+                <div class="social-links"><a href="#">LinkedIn</a><a href="#">Twitter</a></div>
+            </div>
+            <div class="footer-col">
+                <h4>Navigate</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="catalogue.html">Catalogue</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact & Legal</h4>
+                <ul>
+                    <li><a href="mailto:support@iykmavian.com">support@iykmavian.com</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Subscribe to Updates</h4>
+                <p>Get notified about new drug arrivals and distribution news.</p>
+                <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed!');">
+                    <input type="email" placeholder="Email Address" required>
+                    <button type="submit">→</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Pharmaceuticals. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Data
+        const faqs = [
+            { q: "How do I place a bulk order?", a: "Browse our Procurement Catalogue, add items to your cart, and proceed to checkout. For orders above ₦500,000, a dedicated account manager will be assigned to you." },
+            { q: "What are your cold chain capabilities?", a: "We operate 124 thermostabilized logistics units with ±0.1°C variance. All cold chain consignments are GPS-tracked in real time from our dispatch hub to your facility." },
+            { q: "Are all products NAFDAC certified?", a: "Absolutely. Every product in our catalogue has a valid NAFDAC registration number and is verified against our blockchain-backed QA network before dispatch." },
+            { q: "How long does delivery take?", a: "Metropolitan deliveries (Lagos, Abuja, Port Harcourt) are fulfilled within 4–24 hours. Orders to other states typically take 2–3 business days via our express network." },
+        ];
+
+        const faqList = document.getElementById('faqList');
+        faqs.forEach((faq, i) => {
+            const item = document.createElement('div');
+            item.style.cssText = 'background: var(--bg-panel); border: 1px solid var(--glass-border); border-radius: 12px; overflow: hidden;';
+            item.innerHTML = `
+                <button onclick="toggleFaq(${i})" id="faq-btn-${i}" style="width:100%; display:flex; justify-content:space-between; align-items:center; padding: 20px 25px; background:none; border:none; color:var(--text-main); font-size:1rem; font-weight:600; cursor:pointer; text-align:left; font-family: var(--font-heading);">
+                    <span>${faq.q}</span>
+                    <span id="faq-icon-${i}" style="font-size:1.3rem; transition: transform 0.3s;">+</span>
+                </button>
+                <div id="faq-body-${i}" style="max-height:0; overflow:hidden; transition: max-height 0.4s ease; padding: 0 25px;">
+                    <p style="color:var(--text-muted); line-height:1.7; padding-bottom:20px; font-size:0.95rem;">${faq.a}</p>
+                </div>
+            `;
+            faqList.appendChild(item);
+        });
+
+        function toggleFaq(index) {
+            const body = document.getElementById(`faq-body-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            const isOpen = body.style.maxHeight !== '0px' && body.style.maxHeight !== '';
+            // Close all
+            faqs.forEach((_, i) => {
+                document.getElementById(`faq-body-${i}`).style.maxHeight = '0px';
+                document.getElementById(`faq-icon-${i}`).style.transform = 'rotate(0deg)';
+                document.getElementById(`faq-icon-${i}`).textContent = '+';
+            });
+            if (!isOpen) {
+                body.style.maxHeight = body.scrollHeight + 'px';
+                icon.style.transform = 'rotate(45deg)';
+                icon.textContent = '+';
+            }
+        }
+
+        // Contact Form Validation & Submission
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            let valid = true;
+
+            // Validate fields
+            const fields = [
+                { id: 'contact-name', fg: 'fg-name', check: v => v.trim().length >= 2 },
+                { id: 'contact-org', fg: 'fg-org', check: v => v.trim().length >= 2 },
+                { id: 'contact-email', fg: 'fg-email', check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+                { id: 'contact-subject', fg: 'fg-subject', check: v => v !== '' },
+                { id: 'contact-message', fg: 'fg-message', check: v => v.trim().length >= 20 },
+            ];
+
+            fields.forEach(({ id, fg, check }) => {
+                const el = document.getElementById(id);
+                const group = document.getElementById(fg);
+                if (!check(el.value)) {
+                    el.classList.add('error');
+                    group.classList.add('has-error');
+                    valid = false;
+                } else {
+                    el.classList.remove('error');
+                    group.classList.remove('has-error');
+                }
+            });
+
+            const consent = document.getElementById('contact-consent');
+            if (!consent.checked) {
+                alert('Please agree to the Privacy Policy before sending.');
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Simulate submission
+            const btn = document.getElementById('contactSubmitBtn');
+            const btnText = document.getElementById('submitBtnText');
+            btn.disabled = true;
+            btnText.textContent = 'Sending…';
+
+            setTimeout(() => {
+                btn.disabled = false;
+                btnText.textContent = 'Send Message ✉️';
+                document.getElementById('contactForm').reset();
+
+                // Show toast
+                const toast = document.getElementById('contactToast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 4000);
+            }, 1500);
+        });
+
+        // Remove error on input
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('input', () => {
+                el.classList.remove('error');
+                const fg = el.closest('.form-group');
+                if (fg) fg.classList.remove('has-error');
+            });
+        });
+    </script>
+</body>
+
+</html>

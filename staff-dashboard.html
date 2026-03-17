@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Command Center - IYKMAVIAN Logistics Grid</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        /* Elite Staff Dashboard Aesthetics */
+        .dash-layout-advanced {
+            display: grid;
+            grid-template-columns: 280px 1fr 340px;
+            min-height: 100vh;
+            background: var(--bg-dark);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Left Navigation Matrix */
+        .dash-sidebar {
+            background: rgba(10, 18, 35, 0.85);
+            backdrop-filter: blur(25px);
+            border-right: 1px solid var(--glass-border);
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 20;
+        }
+
+        .dash-sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0, 68, 255, 0.03) 0%, transparent 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .brand-logo img {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .brand-logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .dash-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 500;
+            margin-bottom: 6px;
+            border: 1px solid transparent;
+        }
+
+        .dash-nav-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            transform: translateX(5px);
+        }
+
+        .dash-nav-item.active {
+            background: linear-gradient(90deg, rgba(0, 68, 255, 0.15), rgba(0, 68, 255, 0.02));
+            color: var(--blue-light);
+            border-left: 3px solid var(--blue-primary);
+            font-weight: 600;
+        }
+
+        .dash-nav-item i {
+            font-size: 1.25rem;
+        }
+
+        /* Main Tactical Area */
+        .dash-main-area {
+            padding: 40px 4%;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .dash-global-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            padding-bottom: 25px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .header-bg-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 250px;
+            background: radial-gradient(ellipse at top left, rgba(0, 68, 255, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .header-tools {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar input {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 25px;
+            border-radius: 30px;
+            color: var(--text-main);
+            width: 250px;
+            transition: all 0.3s;
+            font-family: var(--font-body);
+        }
+
+        .search-bar input:focus {
+            background: rgba(0, 68, 255, 0.05);
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 15px rgba(0, 68, 255, 0.2);
+            width: 300px;
+            outline: none;
+        }
+
+        .notification-bell {
+            position: relative;
+            background: rgba(255, 255, 255, 0.05);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .notification-bell:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            border-color: var(--yellow-accent);
+        }
+
+        .notification-bell .badge {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #ff5f56;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 3px 6px;
+            border-radius: 10px;
+            border: 2px solid var(--bg-dark);
+        }
+
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--blue-primary), var(--blue-glow));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 800;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 12px rgba(0, 68, 255, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        /* Right Sidebar Intel Feed */
+        .dash-right-sidebar {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(10, 18, 35, 0.6) 100%);
+            border-left: 1px solid var(--glass-border);
+            padding: 30px 25px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            backdrop-filter: blur(20px);
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 5px;
+            top: 25px;
+            bottom: -20px;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item:last-child::before {
+            display: none;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px currentColor;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .timeline-content:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateX(5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-content h4 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+        }
+
+        .timeline-content p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .timeline-content .time {
+            font-size: 0.7rem;
+            color: var(--blue-primary);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Widget Injection Targets (Used by dashboard.js) */
+        .dash-widget-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .dash-layout-advanced {
+                grid-template-columns: 240px 1fr;
+            }
+
+            .dash-right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .dash-layout-advanced {
+                grid-template-columns: 1fr;
+            }
+
+            .dash-sidebar {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Tactical Grid Atmospheric Background -->
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue" style="top: -100px; left: -100px; opacity: 0.6;"></div>
+        <div class="glow-orb orb-yellow" style="bottom: -100px; right: -100px; opacity: 0.1;"></div>
+    </div>
+
+    <div class="dash-layout-advanced">
+        <!-- Left Matrix Sync Navigation -->
+        <aside class="dash-sidebar">
+            <a href="index.html" class="brand-logo" style="margin-bottom: 35px; display: block;">
+                <img src="images/logo.png" alt="IYKMAVIAN Mega-Wholesale"
+                    style="height: 48px; width: auto; display: block; object-fit: contain;">
+            </a>
+
+            <div
+                style="margin-bottom: 35px; padding: 18px; background: rgba(0,0,0,0.3); border-radius: 16px; border: 1px solid rgba(255,255,255,0.05); text-align: center;">
+                <div
+                    style="font-size: 0.7rem; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 8px; font-weight:600;">
+                    Active Matrix Node</div>
+                <div id="dashRoleLabel"
+                    style="color: var(--yellow-accent); font-weight: 800; font-family: var(--font-heading); font-size: 1.25rem; line-height: 1.2; text-shadow: 0 0 15px rgba(255,189,46,0.3);">
+                    Syncing Data...
+                </div>
+            </div>
+
+            <nav style="flex-grow: 1;">
+                <ul class="nav-links" style="flex-direction: column; gap: 8px;">
+                    <li><a href="#" class="active dash-nav-item"><i>⊞</i> Command Center</a></li>
+                    <li><a href="#" class="dash-nav-item"><i>📊</i> Live Flow Analytics</a></li>
+                    <li><a href="#" class="dash-nav-item"><i>📋</i> Requisition Tasks</a></li>
+                    <li><a href="#" class="dash-nav-item"><i>📡</i> Facility Systems</a></li>
+                    <li><a href="catalogue.html" class="dash-nav-item"><i>📦</i> Procurement Portal</a></li>
+                </ul>
+            </nav>
+
+            <div
+                style="margin-top: auto; margin-bottom: 25px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.05);">
+                <div
+                    style="font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 15px; letter-spacing: 1px; display:flex; justify-content:space-between; align-items:center;">
+                    Node Emulator <button id="themeToggleBtn"
+                        style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.1rem;">🌙</button>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <a href="?role=Pharmacist (Demo)"
+                        style="display: block; font-size: 0.8rem; padding: 10px 12px; background: rgba(0,68,255,0.1); border-radius: 8px; color: var(--blue-light); border: 1px solid rgba(0,68,255,0.2); text-decoration: none; transition:all 0.2s;">
+                        <span
+                            style="display:inline-block; width:6px; height:6px; background:#27c93f; border-radius:50%; margin-right:5px; box-shadow:0 0 5px #27c93f;"></span>
+                        Pharmacist Override
+                    </a>
+                    <a href="?role=Warehouse Manager"
+                        style="display: block; font-size: 0.8rem; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: 8px; color: var(--text-muted); text-decoration: none; transition:all 0.2s; border:1px solid transparent;">
+                        <span
+                            style="display:inline-block; width:6px; height:6px; background:var(--text-muted); border-radius:50%; margin-right:5px;"></span>
+                        Warehouse Manager
+                    </a>
+                    <a href="?role=Dispatch Unit"
+                        style="display: block; font-size: 0.8rem; padding: 10px 12px; background: rgba(255,255,255,0.03); border-radius: 8px; color: var(--text-muted); text-decoration: none; transition:all 0.2s; border:1px solid transparent;">
+                        <span
+                            style="display:inline-block; width:6px; height:6px; background:var(--text-muted); border-radius:50%; margin-right:5px;"></span>
+                        Fleet Dispatch
+                    </a>
+                </div>
+            </div>
+
+            <a href="staff-portal.html" class="btn-primary"
+                style="background: rgba(255, 95, 86, 0.1); color: #ff5f56; border-color:rgba(255,95,86,0.3); justify-content: center; width: 100%; box-shadow:none;">
+                <i>☒</i> Terminate Session
+            </a>
+        </aside>
+
+        <!-- Main Tactical Interface -->
+        <main class="dash-main-area">
+            <div class="header-bg-glow"></div>
+
+            <!-- Global Header -->
+            <header class="dash-global-header">
+                <div style="animation: fadeInDown 0.6s ease;">
+                    <h1 style="font-size: 2.2rem; font-family: var(--font-heading); font-weight:800; margin-bottom:5px;"
+                        id="dashWelcomeLabel">
+                        Initializing Agent...
+                    </h1>
+                    <p style="color: var(--text-muted); font-size: 0.95rem; letter-spacing: 0.5px;">
+                        Enterprise node connection secured. <span
+                            style="color: var(--blue-light); font-weight:600;"><span
+                                style="display:inline-block; width:6px; height:6px; background:currentColor; border-radius:50%; margin-right:4px;"></span>Transport
+                            Encryption Active.</span>
+                    </p>
+                </div>
+                <div class="header-tools" style="animation: fadeInDown 0.6s ease 0.1s both;">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Query ops ledger or SKUs...">
+                    </div>
+                    <div class="notification-bell">
+                        🔔<span class="badge">3</span>
+                    </div>
+                    <div class="user-avatar">JD</div>
+                </div>
+            </header>
+
+            <!-- Dynamic Widgets Container (Populated by JS) -->
+            <div id="dynamicWidgets" class="dash-widget-grid entrance-animation delay-2">
+                <!-- Javascript (dashboard.js) will inject complex role-specific glassmorphic cards here based on the URL ?role param -->
+            </div>
+
+            <div
+                style="margin-top: 50px; padding: 30px; border-radius: 16px; background: rgba(0,0,0,0.2); border: 1px dashed rgba(255,255,255,0.1); text-align: center; color: var(--text-muted);">
+                <span
+                    style="font-family:var(--font-heading); font-weight:700; color:var(--blue-light); display:block; margin-bottom:10px;">IYKMAVIAN
+                    INFRASTRUCTURE</span>
+                Role-specific payload fully loaded. Awaiting further tactical inputs...
+            </div>
+        </main>
+
+        <!-- Right Intel Feed Sidebar -->
+        <aside class="dash-right-sidebar">
+            <h3
+                style="font-size: 1.15rem; font-family:var(--font-heading); margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; color:var(--text-main);">
+                Global Logistics Telemetry
+            </h3>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="color: var(--blue-light);"></div>
+                    <div class="timeline-content">
+                        <h4>Cold Chain Truck #04</h4>
+                        <p>Departed Central Hub with 450 pallets. Temp stable at 3.1°C.</p>
+                        <span class="time">2 mins ago</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="color: var(--yellow-accent);"></div>
+                    <div class="timeline-content">
+                        <h4>Urgent Institutional Requisition</h4>
+                        <p>General Hospital Beta requested 2000 units Ampicillin for immediate drop-off.</p>
+                        <span class="time">14 mins ago</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="color: #27c93f;"></div>
+                    <div class="timeline-content">
+                        <h4>QA Compliance Clearance</h4>
+                        <p>Batch #8992-B passed spectroscopic mass analysis and NAFDAC secondary review.</p>
+                        <span class="time">1 hr ago</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="color: #ff5f56;"></div>
+                    <div class="timeline-content">
+                        <h4>Grid Status Alert</h4>
+                        <p>Brief power fluctuation in Storage Sector 4. Backup generators successfully engaged.</p>
+                        <span class="time">3 hrs ago</span>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot" style="color: var(--blue-primary);"></div>
+                    <div class="timeline-content">
+                        <h4>Shift Cycle Log</h4>
+                        <p>Night shift pharmacovigilance team data synced and signed off.</p>
+                        <span class="time">5 hrs ago</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Initialization Scripts -->
+    <script src="scripts/dashboard.js"></script>
+    <script>
+        // Inline theme toggle specific to dash layout
+        const dashThemeBtn = document.getElementById("themeToggleBtn");
+        if (dashThemeBtn) {
+            const currentTheme = localStorage.getItem("iykmavian_theme") || "dark";
+            document.documentElement.setAttribute("data-theme", currentTheme);
+            dashThemeBtn.innerHTML = currentTheme === "light" ? "🌙" : "☀️";
+
+            dashThemeBtn.addEventListener("click", () => {
+                let theme = document.documentElement.getAttribute("data-theme");
+                let newTheme = theme === "light" ? "dark" : "light";
+                document.documentElement.setAttribute("data-theme", newTheme);
+                localStorage.setItem("iykmavian_theme", newTheme);
+                dashThemeBtn.innerHTML = newTheme === "light" ? "🌙" : "☀️";
+            });
+        }
+    </script>
+</body>
+
+</html>

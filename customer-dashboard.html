@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - IYKMAVIAN Demo</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .customer-dash-container {
+            max-width: 1200px;
+            margin: 120px auto 60px;
+            padding: 0 5%;
+        }
+
+        .dash-header-boxed {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .user-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card-premium {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card-premium::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03));
+            pointer-events: none;
+        }
+
+        .stat-val {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--blue-primary);
+            font-family: var(--font-heading);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .order-history-table {
+            width: 100%;
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .table-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr auto;
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--glass-border);
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .order-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        [data-theme="light"] .order-row:hover {
+            background: rgba(0, 0, 0, 0.01);
+        }
+
+        .status-pill {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background: rgba(197, 160, 89, 0.1);
+            color: #c5a059;
+        }
+
+        .status-verified {
+            background: rgba(0, 68, 255, 0.1);
+            color: #0044ff;
+        }
+
+        .status-delivered {
+            background: rgba(39, 201, 63, 0.1);
+            color: #27c93f;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Light Theme Refinements */
+        [data-theme="light"] .dash-header-boxed,
+        [data-theme="light"] .stat-card-premium,
+        [data-theme="light"] .order-history-table {
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        [data-theme="light"] .stat-val {
+            color: #1e293b;
+        }
+    </style>
+</head>
+
+<body data-theme="dark">
+
+    <div class="atmospheric-bg">
+        <div class="glow-orb orb-blue"></div>
+        <div class="glow-orb orb-yellow"></div>
+    </div>
+
+    <!-- Navigation -->
+    <header id="main-header" class="scrolled">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <img src="images/logo.png" alt="IYKMAVIAN"
+                    style="height: 55px; vertical-align: middle; margin-right: 10px; object-fit: contain;">
+                
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalogue.html">Procurement Portal</a></li>
+                <li><a href="prescription-upload.html">Upload Rx</a></li>
+                <li><a href="staff-portal.html">Support</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme">🌙</button>
+                <div class="user-profile-toggle"
+                    style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                    <span style="font-weight: 600; font-size: 0.9rem;">Pharmacy Plus LTD</span>
+                    <div
+                        style="width: 35px; height: 35px; background: var(--blue-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                        P</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="customer-dash-container">
+
+        <div class="dash-header-boxed entrance-animation">
+            <div>
+                <h1 style="font-size: 2rem; margin-bottom: 5px;">Marketplace Dashboard</h1>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Welcome back, <strong>Pharmacy Plus
+                        Limited</strong></p>
+            </div>
+            <div style="text-align: right;">
+                <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 5px;">Credit Limit</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: var(--yellow-accent);">₦4,500,000.00</div>
+            </div>
+        </div>
+
+        <div class="user-stat-grid">
+            <div class="stat-card-premium entrance-animation" style="animation-delay: 100ms;">
+                <div class="stat-val">12</div>
+                <div class="stat-label">Active Orders</div>
+            </div>
+            <div class="stat-card-premium entrance-animation" style="animation-delay: 200ms;">
+                <div class="stat-val">₦1.2M</div>
+                <div class="stat-label">Total Spent (MTD)</div>
+            </div>
+            <div class="stat-card-premium entrance-animation" style="animation-delay: 300ms;">
+                <div class="stat-val">04</div>
+                <div class="stat-label">Rx Pending Review</div>
+            </div>
+            <div class="stat-card-premium entrance-animation" style="animation-delay: 400ms;">
+                <div class="stat-val">Elite</div>
+                <div class="stat-label">Partner Status</div>
+            </div>
+        </div>
+
+        <!-- Order History -->
+        <div class="order-history-table entrance-animation" style="animation-delay: 500ms;">
+            <div class="table-header">
+                <h3 style="font-family: var(--font-heading);">Recent Requisitions</h3>
+                <a href="catalogue.html" class="btn-primary" style="padding: 10px 20px; font-size: 0.85rem;">New Order
+                    +</a>
+            </div>
+
+            <div class="order-row"
+                style="background: rgba(255,255,255,0.03); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted);">
+                <span>Order ID</span>
+                <span>Placement Date</span>
+                <span>Total Amount</span>
+                <span>Status</span>
+                <span>Action</span>
+            </div>
+
+            <div class="order-row">
+                <span style="font-family: monospace; font-weight: 700;">#KRLX-8821</span>
+                <span>Oct 24, 2026</span>
+                <span style="font-weight: 700;">₦145,200.00</span>
+                <span><span class="status-pill status-verified">Authorized</span></span>
+                <a href="order-tracking.html" class="btn-small btn-primary">Track UI</a>
+            </div>
+
+            <div class="order-row">
+                <span style="font-family: monospace; font-weight: 700;">#KRLX-8794</span>
+                <span>Oct 22, 2026</span>
+                <span style="font-weight: 700;">₦28,500.00</span>
+                <span><span class="status-pill status-delivered">Fulfilled</span></span>
+                <a href="#" class="btn-small"
+                    style="border: 1px solid var(--glass-border); color: var(--text-main);">Invoice</a>
+            </div>
+
+            <div class="order-row">
+                <span style="font-family: monospace; font-weight: 700;">#KRLX-8750</span>
+                <span>Oct 20, 2026</span>
+                <span style="font-weight: 700;">₦450,900.00</span>
+                <span><span class="status-pill status-pending">In Review</span></span>
+                <a href="order-tracking.html" class="btn-small btn-primary">Track UI</a>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="scripts/app.js"></script>
+</body>
+
+</html>

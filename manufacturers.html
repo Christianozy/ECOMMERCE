@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer Integration - IYKMAVIAN</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .manufacturer-hero {
+            padding: 140px 5% 80px;
+            background: linear-gradient(135deg, rgba(255, 189, 46, 0.08) 0%, transparent 100%);
+            text-align: center;
+        }
+
+        .portal-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .portal-card {
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .portal-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .portal-card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 12px;
+        }
+
+        .portal-card p {
+            color: var(--text-muted);
+            line-height: 1.65;
+            font-size: 0.92rem;
+        }
+
+        .integration-section {
+            padding: 90px 5%;
+            background: rgba(255, 255, 255, 0.01);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .step-container {
+            max-width: 1000px;
+            margin: 50px auto 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .step-row {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .step-digit {
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(255, 189, 46, 0.15);
+            font-family: var(--font-heading);
+            min-width: 90px;
+        }
+
+        .step-info h4 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .onboarding-cta {
+            padding: 100px 10%;
+            text-align: center;
+            background: radial-gradient(circle at center, rgba(0, 68, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .form-card {
+            max-width: 600px;
+            margin: 40px auto 0;
+            background: var(--bg-panel);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: left;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        @media(max-width: 800px) {
+            .portal-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo"><img src="images/logo.png" alt="IYKMAVIAN"
+                    style="max-height:75px;"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li class="nav-dropdown">
+                    <span class="dropdown-trigger active">Supply Chain 🚚 <span class="dropdown-arrow">▼</span></span>
+                    <div class="dropdown-menu">
+                        <a href="logistics.html" class="dropdown-item">Mega-Logistics</a>
+                        <a href="warehousing.html" class="dropdown-item">Regional Hubs</a>
+                        <a href="manufacturers.html" class="dropdown-item active">Manufacturers</a>
+                        <a href="b2b-portal.html" class="dropdown-item">Bulk Procurement</a>
+                    </div>
+                </li>
+                <li><a href="contact.html">Distribution Inquiry</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="manufacturer-hero">
+            <span class="hero-tag"
+                style="background: rgba(255,189,46,0.1); border-color: rgba(255,189,46,0.2); color: #ffd600;">Global
+                Partnerships</span>
+            <h1>The Bridge to <span class="hero-gradient-word">Distribution</span>.</h1>
+            <p class="section-sub">Empowering global drug manufacturers with a streamlined pathway to the Nigerian
+                market.
+                Full-stack distribution, last-mile visibility, and regulatory advocacy at your fingertips.</p>
+        </section>
+
+        <section class="portal-highlights">
+            <div class="portal-card">
+                <div class="portal-icon">📡</div>
+                <h3>EDI Integration</h3>
+                <p>Automated Electronic Data Interchange for real-time inventory exchange and supply chain planning.</p>
+            </div>
+            <div class="portal-card">
+                <div class="portal-icon">📈</div>
+                <h3>Market Intelligence</h3>
+                <p>Access granular consumption data and regional trends to optimize production and shipping cycles.</p>
+            </div>
+            <div class="portal-card">
+                <div class="portal-icon">⚖️</div>
+                <h3>Regulatory Hub</h3>
+                <p>Digital dashboard for NAFDAC renewals, batch registrations, and pharmacovigilance reporting.</p>
+            </div>
+        </section>
+
+        <section class="integration-section">
+            <h2 style="text-align: center;">Onboarding <span class="hero-gradient-word">Flow</span></h2>
+            <div class="step-container">
+                <div class="step-row">
+                    <div class="step-digit">01</div>
+                    <div class="step-info">
+                        <h4>Partner Verification</h4>
+                        <p>We review factory GWP/GMP certifications and product portfolios for alignment with our
+                            quality standards.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-digit">02</div>
+                    <div class="step-info">
+                        <h4>Pipeline Setup</h4>
+                        <p>EDI connection and master SKU database mapping for seamless first-mile integration.</p>
+                    </div>
+                </div>
+                <div class="step-row">
+                    <div class="step-digit">03</div>
+                    <div class="step-info">
+                        <h4>Mega-Distribution Launch</h4>
+                        <p>Initial high-volume shipments dispatched to our regional hubs for national fulfillment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="onboarding-cta">
+            <h2>Start Your <span class="hero-gradient-word">Expansion</span></h2>
+            <p class="section-sub">Direct pipeline for global pharmaceutical manufacturers entering the West African
+                market.</p>
+            <div class="form-card">
+                <div class="form-row">
+                    <div class="f-field"><label>Company Name</label><input class="f-input" placeholder="e.g. Pfizer">
+                    </div>
+                    <div class="f-field"><label>Origin Country</label><input class="f-input" placeholder="e.g. Germany">
+                    </div>
+                </div>
+                <div class="f-field"><label>Primary Portfolio</label><textarea class="f-input" style="height: 80px;"
+                        placeholder="Drug classes (e.g. Oncology, Chronic Care)"></textarea></div>
+                <button class="btn-primary" style="width: 100%; margin-top: 15px;">Submit Partnership Inquiry</button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 IYKMAVIAN Mega-Wholesale. Manufacturer Solutions.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
